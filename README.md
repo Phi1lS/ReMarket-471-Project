@@ -1,2 +1,5 @@
 # ReMarket-471-Project
-ReMarket Project for COSC 471
+
+This project is for COSC 471. It connects to a database in MySQL using PHP and has a frontend in HTML.
+
+The project is a marketplace similar to Ebay or Craigslist.
