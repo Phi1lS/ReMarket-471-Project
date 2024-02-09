@@ -1,4 +1,5 @@
 <?php 
-// make connection to data base
+// make connection to data base using PDO object
+$justMakingThisForGitToShutup;
 $pdo = new PDO('mysql:host=localhost;port=3306;dbname=misc', 'nhalash', '20012766');
 // see the "errors" folder for details...
