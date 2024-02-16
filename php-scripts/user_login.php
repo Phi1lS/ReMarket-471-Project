@@ -1,15 +1,26 @@
 <?php
-// This is all placeholder code for now until it's covered in class
-// Placeholder for login logic
-if (isset($_POST['login'])) {
-    // TODO: Logic to check credentials
+// import pdo.php to make connection to DB:
+require_once "pdo.php";
+// use iffset() to see if fields have been filled in the HTML signup page:
+if(isset($_POST['fname']) && isset($_POST_['lname']) && isset($_POST_['username'])  
+            && isset($_POST_['phone'])  && isset($_POST_['email'])  
+            && isset($_POST_['password'])) 
+        {
+            // Write teh SQL query:
+            $sql = "INSERT INTO user (fname, lname, username, phone, email, password)
+                    VALUES (:fname, :lname, :username, :phone, :email, :password)";
 
-    // Redirect to the home page for now
-    header('Location: index.html');
-    exit();
-}
+            // Parse the data from above and prepare it:
+            $stmt = $pdo->prepare($sql);
 
-// If the form wasn't submitted, redirect to the login form
-header('Location: login.html');
-exit();
+            // Execute the Query into the DB:
+            $stmt->execute(array(
+                'fname' => $_POST['fname'],
+                'lname' => $_POST['lname'],
+                'username' => $_POST['username'],
+                'phone' => $_POST['phone'],
+                'email' => $_POST['email'],
+                'password' => $_POST['password']));
+        }
+    // Pray that it works lmao
 ?>
