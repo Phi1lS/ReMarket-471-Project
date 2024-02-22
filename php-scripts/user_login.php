@@ -29,10 +29,11 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
         // Check the results:
         if($row === false) {
-            echo "Login failed... Try again";
+            header('Location: ../login.html');
         }
         else {
-            echo "Login was succesfull :)";
+            header('Location: ../index.html');
+            exit;
         }
     }
 ?>
