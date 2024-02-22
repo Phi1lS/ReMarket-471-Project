@@ -29,5 +29,5 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username'])
                 'password' => $_POST['password']));
         }
     // Pray that it works lmao
-    header('Location: ../signup.html'); // chnage to index.html
+    header('Location: ../index.html');
 ?>
