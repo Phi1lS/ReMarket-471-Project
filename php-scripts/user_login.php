@@ -30,6 +30,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
         // Check the results:
         if($row === false) {
             header('Location: ../login.html');
+            exit;
         }
         else {
             header('Location: ../index.html');
