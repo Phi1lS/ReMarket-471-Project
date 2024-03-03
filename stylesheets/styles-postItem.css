@@ -10,7 +10,7 @@ body {
     max-width: 400px;
     margin: 100px auto 50px;
     padding: 20px;
-    background: #fff;
+    background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -33,7 +33,7 @@ form {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background: #6cadb7;
+    background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(135, 116, 8, 0.1);
     text-align: center;
@@ -52,6 +52,11 @@ form {
 
 .form-footer a:hover {
     text-decoration: underline;
+}
+
+/* Additional styles to make sure the form content does not overlap the logo */
+form .form-content {
+    padding-top: 20px; /* Adjust as necessary */
 }
 
 input[type="text"],
@@ -99,3 +104,11 @@ a:hover {
     margin-top: 20px;
 }
 
+.logo-link {
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    display: inline-block; /* Makes the link align with the top-left corner */
+    text-decoration: none; /* Removes underline from the link */
+}

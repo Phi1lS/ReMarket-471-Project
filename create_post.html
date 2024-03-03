@@ -8,36 +8,42 @@
     <link rel="stylesheet" href="./stylesheets/styles-postItem.css">
 </head>
 <body>
-    <form action="./php-scripts/create_post.php" method="post" enctype="multipart/form-data">
-        <h1>Post an Item for Sale</h1>
-        <label for="item_picture">Upload Picture:</label>
-        <br>
-        <input type="file" id="item_picture" name="item_picture" accept="image/*" required>
-        <br>
-        <label for="item_description">Description:</label>
-        <textarea id="item_description" name="item_description" rows="4" cols="50" required></textarea>
-        <br>
-        <label for="item_price">Price:</label>
-        <br>
-        <input type="number" id="item_price" name="item_price" step="0.01" required>
-        <br>
-        <label for="contact_name">Contact Name:</label>
-        <input type="text" id="contact_name" name="contact_name" required>
-        <br>
-        <label for="contact_number">Contact Number:</label>
-        <br>
-        <input type="tel" id="contact_number" name="contact_number" required>
-        <br>
-        <label for="post_date">Date Posted:</label>
-        <br>
-        <input type="date" id="post_date" name="post_date" required>
-        <br>
-        <br>
-        <input type="submit" value="Post Item">
-    </form>
-    <br>
-    <div class="center-button">
-        <a href="index.html">Go back to home</a>
+    <div class="container">
+    <a href="index.html" class="logo-link">
+        <img src="./logo/logo.png" alt="ReMarket Logo" class="logo">
+    </a>
+        <form action="./php-scripts/create_post.php" method="post" enctype="multipart/form-data">
+            <div class="form-content">
+            <h1>Post an Item for Sale</h1>
+            <label for="item_name" >Item Name: </label>
+            <input type="text" id="item_name" name="item_name" required> <!--Must modify create_post.php script to process item name as part of form submission-->
+            <br>
+            <label for="item_picture">Upload Picture:</label>
+            <br>
+            <input type="file" id="item_picture" name="item_picture" accept="image/*" required>
+            <br>
+            <label for="item_description">Description:</label>
+            <textarea id="item_description" name="item_description" rows="4" cols="50" required></textarea>
+            <br>
+            <label for="item_price">Price:</label>
+            <br>
+            <input type="number" id="item_price" name="item_price" step="0.01" required>
+            <br>
+            <label for="contact_name">Contact Name:</label>
+            <input type="text" id="contact_name" name="contact_name" required>
+            <br>
+            <label for="contact_number">Contact Number:</label>
+            <br>
+            <input type="tel" id="contact_number" name="contact_number" required>
+            <br>
+            <label for="post_date">Date Posted:</label>
+            <br>
+            <input type="date" id="post_date" name="post_date" required>
+            <br>
+            <br>
+            <input type="submit" value="Post Item">
+        </div>
+        </form>
     </div>
 </body>
 </html>
