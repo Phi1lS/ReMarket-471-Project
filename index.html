@@ -5,6 +5,8 @@
     <title>ReMarket - Buy and Sell</title>
     <link rel="icon" href="./logo/logo.ico">
     <link rel="stylesheet" href="./stylesheets/styles-home.css">
+    <!--Font Awesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
     <link rel="apple-touch-icon" href="apple-touch-icons/apple-touch-icon-iphone-60x60.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icons/apple-touch-icon-ipad-76x76.png">
@@ -14,9 +16,14 @@
 
 <body>
     <div class="header">
-        <img src="./logo/logo.png" alt="ReMarket Logo">
+        <a href="index.html">
+            <img src="./logo/logo.png" alt="ReMarket Logo" class="site-logo">
+        </a>
         <div class="search-container">
             <input type="text" placeholder="Search for anything">
+        </div>
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-cart"></i>
         </div>
     </div>
     <div class="nav-bar">
@@ -77,6 +84,20 @@
         </div>
         <!-- More items -->
     </div>
+
+    <div class="cart-dropdown" style="display: none;">
+        <!--TODO: Use PHP to read and display cart items in dropdown -->
+        <!--TODO: Use PHP to check if there are cart items in the database. If there are none, display "No items are in your cart!"-->
+        <!--This is TEMPORARY. REMOVE THIS WHEN PHP IS ADDED--> No items are in your cart!
+    </div>
+
+     <script>
+        document.querySelector('.cart-icon-container').addEventListener('click', function() {
+            var cartDropdown = document.querySelector('.cart-dropdown');
+            cartDropdown.style.display = cartDropdown.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+
 </body>
 
 </html>
