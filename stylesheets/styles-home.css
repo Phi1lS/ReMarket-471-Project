@@ -162,3 +162,25 @@ body {
 .purchases-title {
     margin-top: 60px;
 }
+
+.cart-dropdown-footer {
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Add a separator line, if desired */
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #58A4B0; /* Your theme color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px; /* Add some space above the button */
+    box-sizing: border-box;
+}
+
+.checkout-button:hover {
+    background-color: #373F51; /* Darker shade for hover effect */
+}
