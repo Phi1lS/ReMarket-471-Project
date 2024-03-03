@@ -10,6 +10,7 @@ body {
     align-items: center;
     background-color: #58A4B0;
     padding: 10px;
+    justify-content: space-between; 
     color: #373F51;
 }
 
@@ -93,7 +94,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 999;
+    z-index: 1;
     display: none;
 }
 
