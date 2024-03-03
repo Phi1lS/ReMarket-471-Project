@@ -107,35 +107,57 @@ body {
 }
 
 .profile-icon {
-    height: 40px; /* Adjust as necessary */
-    width: 40px; /* Adjust as necessary */
-    border-radius: 50%; /* Circular profile pictures */
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 .account-dropdown {
     position: absolute;
     right: 0;
-    top: 100%; /* Position it right below the profile icon */
-    width: 150px; /* Adjust as necessary */
+    top: 100%;
+    width: 150px;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .account-dropdown a {
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: #333333; /* Adjust as necessary */
-    border-bottom: 1px solid #eeeeee; /* Optional separator */
+    color: #333333;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .account-dropdown a:last-child {
-    border-bottom: none; /* No border for the last item */
+    border-bottom: none;
 }
 
 .account-dropdown a:hover {
-    background-color: #f2f2f2; /* Highlight on hover */
+    background-color: #f2f2f2; 
+}
+
+.purchases-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.purchases-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 75px;
+}
+
+.purchases-title {
+    margin-top: 60px;
 }
