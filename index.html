@@ -19,11 +19,25 @@
         <a href="index.html">
             <img src="./logo/logo.png" alt="ReMarket Logo" class="site-logo">
         </a>
+
         <div class="search-container">
             <input type="text" placeholder="Search for anything">
         </div>
+
         <div class="cart-icon-container">
             <i class="fas fa-shopping-cart"></i>
+        </div>
+
+        <div class="profile-icon-container">
+            <!--PLACEHOLDER TEMPORARY IMAGE. DEFAULT PROFILE PIC UNTIL PHP IS ADDED.-->
+            <!--TODO: Add PHP to query the user's profile picture based on their primary key (user id) and display it dynamically with HTML-->
+            <img src="other-images/default_profile_pic.jpg" alt="Profile" class="profile-icon">
+            <!-- Account dropdown -->
+            <div class="account-dropdown" style="display: none;">
+                <a href="account_page.html">Account Page</a>
+                <a href="purchases.html">Purchases</a>
+                <a href="settings.html">Settings</a>
+            </div>
         </div>
     </div>
     <div class="nav-bar">
@@ -41,6 +55,7 @@
         </nav>
     </div>
     <div class="container">
+        <!--TODO: ADD PHP that dynamically adds and adjusts items from the database-->
         <!-- Repeat this block for each item -->
         <div class="item">
             <img src="./item-pictures/nikeshoe1.jpeg" alt="Nike Shoes">
@@ -96,8 +111,11 @@
             var cartDropdown = document.querySelector('.cart-dropdown');
             cartDropdown.style.display = cartDropdown.style.display === 'none' ? 'block' : 'none';
         });
+        document.querySelector('.profile-icon-container').addEventListener('click', function() {
+        var accountDropdown = document.querySelector('.account-dropdown');
+        accountDropdown.style.display = accountDropdown.style.display === 'none' ? 'block' : 'none';
+        });
     </script>
 
 </body>
-
 </html>
