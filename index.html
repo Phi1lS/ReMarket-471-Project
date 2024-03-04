@@ -50,7 +50,11 @@
             -->
             <a href="index.html">Home</a>
             <a href="create_post.html">Create New Post</a>
-            <a href="login.html">Logout</a>
+            <form action="./php-scripts/user_signup.php" method="post" style="display: inline;">
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                <input type="submit" value="Logout">
+            </form>
+            
         </nav>
     </div>
     <div class="container">

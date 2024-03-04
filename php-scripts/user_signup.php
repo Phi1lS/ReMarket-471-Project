@@ -37,6 +37,41 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
     $stmt_active_users->execute(array('user_id' => $user_id));
 
     // Redirect the user to the desired page (e.g., index.html):
+
     header('Location: ../index.html');
+    exit;
 }
+
+// Check if the user is logged in and has the privilege to delete users (this check could be more sophisticated):
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    
+        // Write the SQL query to delete the user from the database:
+        $sql = "DELETE FROM active_users WHERE user_id = :user_id";
+    
+        // Prepare the SQL statement:
+        $stmt = $pdo->prepare($sql);
+    
+        // Bind parameters:
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    
+        // Execute the query:
+        if ($stmt->execute()) {
+            // Destroy the session and redirect to login page:
+            session_destroy();
+            header('Location: ../login.html');
+            exit;
+        } else {
+            // Handle errors if the query fails:
+            echo "Error deleting user from the database.";
+        }
+    } else {
+        // Redirect the user to the login page if they are not logged in:
+        header('Location: ../login.html');
+        exit;
+    }
+    
+
+
+    
 ?>
