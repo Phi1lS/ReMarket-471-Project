@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>ReMarket - Buy and Sell</title>
     <link rel="icon" href="./logo/logo.ico">
-    <link rel="stylesheet" href="./stylesheets/styles-home.css">
+
     <!--Font Awesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!--<script src="https://cdn.tailwindcss.com"></script>-->
+    <link rel="stylesheet" href="output.css">
 
     <link rel="apple-touch-icon" href="apple-touch-icons/apple-touch-icon-iphone-60x60.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icons/apple-touch-icon-ipad-76x76.png">
@@ -14,94 +16,272 @@
     <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icons/apple-touch-icon-ipad-retina-152x152.png">
 </head>
 
-<body>
-    <div class="header">
-        <a href="index.html">
-            <img src="./logo/logo.png" alt="ReMarket Logo" class="site-logo">
+<body class="h-full bg-gray-100 dark:bg-gray-900"> <!-- Use bg-gray-100 for light mode and bg-gray-900 for dark mode -->
+    <nav class="bg-remarket-blue p-4 dark:bg-remarket-teal-800 flex items-center justify-between"> <!-- Add flexbox utilities to arrange items -->
+        <!-- ReMarket Logo -->
+        <a href="index.html" class="flex items-center mr-4 md:mr-6">
+            <img src="./logo/logo.png" alt="ReMarket Logo" class="h-12 md:h-16"> <!-- Increase height here -->
         </a>
-
-        <div class="search-container">
-            <input type="text" placeholder="Search for anything">
-        </div>
-
-        <div class="cart-icon-container">
-            <i class="fas fa-shopping-cart"></i>
-        </div>
-
-        <div class="profile-icon-container">
-            <!--PLACEHOLDER TEMPORARY IMAGE. DEFAULT PROFILE PIC UNTIL PHP IS ADDED.-->
-            <!--TODO: Add PHP to query the user's profile picture based on their primary key (user id) and display it dynamically with HTML-->
-            <img src="other-images/default_profile_pic.jpg" alt="Profile" class="profile-icon">
-            <!-- Account dropdown -->
-            <div class="account-dropdown" style="display: none;">
-                <a href="account_page.html">Account Page</a>
-                <a href="purchases.html">Purchases</a>
-                <a href="settings.html">Settings</a>
+        
+        <!-- Mobile menu button with increased size -->
+    <div class="md:hidden mr-4 text-xl md:text-2xl"> <!-- Increase font size here -->
+        <button type="button" class="text-gray-200 hover:text-white focus:outline-none focus:text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+        <!-- Search bar and additional options -->
+        <div class="flex-grow flex items-center justify-end space-x-4"> <!-- Adjust alignment and spacing -->
+            <!-- Hidden navigation links on mobile -->
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark">Home</a>
+                <a href="create_post.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark">Create New Post</a>
+                <!-- Add more navigation links here -->
+            </div>
+    
+            <!-- Search bar -->
+            <div class="flex bg-white p-2 rounded">
+                <input type="search" placeholder="Search for anything" class="px-2 py-1 w-full rounded">
+                <button class="text-remarket-dark">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+    
+            <!-- Shopping cart icon -->
+            <div class="text-white hover:text-gray-300">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+    
+            <!-- Profile dropdown -->
+            <div class="relative">
+                <button class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
+                    <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
+                </button>
+                <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden" id="user-menu">
+                    <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account Page</a>
+                    <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Purchases</a>
+                    <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                    <form method="POST" action="./php-scripts/logout.php">
+                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="nav-bar">
-        <nav>
-            <!-- 
-            <a href="index.php">Home</a>
-            <a href="create_post.php">Create New Post</a>
-            <a href="add_payment.php">Add Payment</a>
-            <a href="logout.php">Logout</a> 
+    </nav>
+
+    <div id="shopping-cart" class="fixed inset-0 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" style="z-index: 1000;">
+        <!-- Slide-over backdrop -->
+        <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+            <!--
+              Background backdrop, show/hide based on slide-over state.
+          
+              Entering: "ease-in-out duration-500"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-500"
+                From: "opacity-100"
+                To: "opacity-0"
             -->
-            <a href="index.html">Home</a>
-            <a href="create_post.html">Create New Post</a>
-            <form action="./php-scripts/user_signup.php" method="post" style="display: inline;">
-                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-                <input type="submit" value="Logout">
-            </form>
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+          
+            <div class="fixed inset-0 overflow-hidden">
+              <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                  <!--
+                    Slide-over panel, show/hide based on slide-over state.
+          
+                    Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-full"
+                      To: "translate-x-0"
+                    Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-0"
+                      To: "translate-x-full"
+                  -->
+                  <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                      <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                        <div class="flex items-start justify-between">
+                          <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+                          <div class="ml-3 flex h-7 items-center">
+                            <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                              <span class="absolute -inset-0.5"></span>
+                              <span class="sr-only">Close panel</span>
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+          
+                        <div class="mt-8">
+                          <div class="flow-root">
+                            <ul role="list" class="-my-6 divide-y divide-gray-200">
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
+                                </div>
+          <!-- TODO: PHP Script to dynamically fetch and generate cart items into the slideover cart -->
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        <a href="#">Throwback Hip Bag</a>
+                                      </h3>
+                                      <p class="ml-4">$90.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500">Qty 1</p>
+          
+                                    <div class="flex">
+                                        <!-- TODO: PHP Script that makes remove item remove cart item from cart -->
+                                      <button type="button" class="font-medium text-remarket-blue hover:text-remarket-dark">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
+                                </div>
+          
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        <a href="#">Medium Stuff Satchel</a>
+                                      </h3>
+                                      <p class="ml-4">$32.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500">Blue</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500">Qty 1</p>
+          
+                                    <div class="flex">
+                                      <button type="button" class="font-medium text-remarket-blue hover:text-remarket-dark">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+          
+                              <!-- More products... -->
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                          <p>Subtotal</p>
+                          <p>$112.00</p>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                        <div class="mt-6">
+                          <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-remarket-blue p-4 dark:bg-remarket-teal-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-remarket-dark">Checkout</a>
+                        </div>
+                        <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                          <p>
+                            or
+                            <button type="button" class="font-medium text-bg-remarket-blue dark:text-bg-remarket-teal-800 hover:text-remarket-dark">
+                              Continue Shopping
+                              <span aria-hidden="true"> &rarr;</span>
+                            </button>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="bg-gray-100 dark:bg-gray-800">
+        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">What's New</h2>
+          
+          <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <!-- Repeat this block for each product -->
+            <div class="group">
+              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/nikeshoe1.jpeg" alt="Nike Shoes" class="h-full w-full object-cover object-center group-hover:opacity-75">
+              </div>
+              <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Nike Shoes</h3>
+              <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$45.99</p>
+            </div>
             
-        </nav>
-    </div>
-    <div class="container">
-        <!--TODO: ADD PHP that dynamically adds and adjusts items from the database-->
-        <!-- Repeat this block for each item -->
-        <div class="item">
-            <img src="./item-pictures/nikeshoe1.jpeg" alt="Nike Shoes">
-            <p class="price">$45.99</p>
-            <p>Nike shoes</p>
+            <!-- ... Add more products here by repeating the structure -->
+            <div class="group">
+              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/adidasshoe1.webp" alt="Adidas Shoes" class="h-full w-full object-cover object-center group-hover:opacity-75">
+              </div>
+              <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Adidas Running Shoes</h3>
+              <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$65.00</p>
+            </div>
+
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/used-iphone.webp" alt="iPhone" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">iPhone</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$450.00</p>
+            </div>
+            
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/SamsungFold4.jpeg" alt="Samsung Galaxy Phone" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Samsung Galaxy Phone</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$648.30</p>
+            </div>
+            
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/bike.jpg" alt="Bike" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Bike</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$99.99</p>
+            </div>
+            
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/jeans.jpg" alt="Jeans" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Pair of Jeans</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$32.00</p>
+            </div>
+
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/baseball-cap.jpg" alt="Baseball Hat" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Baseball Hat</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$12.50</p>
+            </div>
+            
+            <!-- Additional product -->
+            <div class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="./item-pictures/necklace.jpg" alt="Necklace" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">Necklace</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900 dark:text-gray-100">$72.48</p>
+            </div>
+      
+            <!-- Continue to add other products similarly -->
+            
+          </div>
         </div>
-        <div class="item">
-            <img src="./item-pictures/adidasshoe1.webp" alt="Adidas Shoes">
-            <p class="price">$65.00</p>
-            <p>Adidas running shoes</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/used-iphone.webp" alt="iPhone">
-            <p class="price">$450.00</p>
-            <p>iPhone</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/SamsungFold4.jpeg" alt="Samsung Phone">
-            <p class="price">$648.30</p>
-            <p>Samsung Galaxy Phone</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/bike.jpg" alt="Bike">
-            <p class="price">$99.99</p>
-            <p>Bike</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/jeans.jpg" alt="Jeans">
-            <p class="price">$32.00</p>
-            <p>Pair of pants</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/baseball-cap.jpg" alt="Baseball Hat">
-            <p class="price">$12.50</p>
-            <p>Used hat</p>
-        </div>
-        <div class="item">
-            <img src="./item-pictures/necklace.jpg" alt="Necklace">
-            <p class="price">$72.48</p>
-            <p>Necklace</p>
-        </div>
-        <!-- More items -->
-    </div>
+      </div>
 
     <div class="cart-dropdown" style="display: none;">
         <!--TODO: Use PHP to read and display cart items in dropdown -->
