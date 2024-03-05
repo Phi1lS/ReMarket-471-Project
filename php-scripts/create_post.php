@@ -1,11 +1,24 @@
 <?php
 // Import pdo.php to make a connection to the DB
 require_once "pdo.php";
-
-
+print_r($_POST);
 // Picture, Description, Price, Contact_Name, Contact_Number, Date posted:
-if (isset($_POST['item_picture'], $_POST['item_description'], $_POST['item_price'],
+if (isset($_POST['item_name'], $_FILES['item_picture'], $_POST['item_description'], $_POST['item_price'],
     $_POST['contact_name'], $_POST['contact_number'], $_POST['post_date'])) {
+
+    // Handle the file upload
+    $file_name = $_FILES['item_picture']['name'];
+    $file_tmp = $_FILES['item_picture']['tmp_name'];
+    $file_type = $_FILES['item_picture']['type'];
+    $file_size = $_FILES['item_picture']['size'];
+    $file_error = $_FILES['item_picture']['error'];
+
+    // Move the uploaded file to your desired location
+    if (move_uploaded_file($file_tmp, "uploads/" . $file_name)) {
+        echo "File has been uploaded successfully.";
+    } else {
+        echo "Failed to move uploaded file. Error: " . $file_error;
+    }
 
     // Retrieve buyer ID (if applicable)
     $buyer_name = $_POST['contact_name']; // Example: Retrieve buyer's name from the form
@@ -18,33 +31,38 @@ if (isset($_POST['item_picture'], $_POST['item_description'], $_POST['item_price
     // Seller id is the same as buyer id for now:
     $seller_id = $buyer_id;
 
-    // Get date time:
-    $current_datetime = date('Y-m-d H:i:s');
-
     // Write SQL Query
-    $sql = "INSERT INTO item (item_picture, item_description, cost, 
-    contact_name, contact_number, seller_id, buyer_id, time_posted) 
-    VALUES (:item_picture, :item_description, :cost, 
-            :contact_name, :contact_number, :seller_id, :buyer_id, :current_datetime)";
+    $sql = "INSERT INTO item (item_name, item_picture, item_description, cost, 
+    contact_name, contact_number, seller_id, buyer_id, post_date) 
+    VALUES (:item_name, :item_picture, :item_description, :cost, 
+            :contact_name, :contact_number, :seller_id, :buyer_id, :post_date)";
     
 
     // Prepare the query
     $stmt = $pdo->prepare($sql);
 
     // Execute the query
-    $stmt->execute([
-    ':item_picture' => $_POST['item_picture'],
-    ':item_description' => $_POST['item_description'],
-    ':cost' => $_POST['item_price'],
-    ':contact_name' => $_POST['contact_name'],
-    ':contact_number' => $_POST['contact_number'],
-    ':seller_id' => $seller_id,
-    ':buyer_id' => $buyer_id,
-    ':post_date' => $current_datetime
-    ]);
+    try {
+        $stmt->execute([
+        ':item_name' => $_POST['item_name'],
+        ':item_picture' => $file_name, // Use the name of the uploaded file
+        ':item_description' => $_POST['item_description'],
+        ':cost' => $_POST['item_price'],
+        ':contact_name' => $_POST['contact_name'],
+        ':contact_number' => $_POST['contact_number'],
+        ':seller_id' => $seller_id,
+        ':buyer_id' => $buyer_id,
+        ':post_date' => $_POST['post_date']
+        ]);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
+}
+else {
+    print_r($_POST);
+    echo "Error: didnt pass if block, in else block.";
+}
 
-
-    // Query executed successfully
-    header('Location: ../index.html');
+// Query executed successfully
+//header('Location: ../index.html');
 ?>
