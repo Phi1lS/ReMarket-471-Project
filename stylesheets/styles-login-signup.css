@@ -1,0 +1,31 @@
+.hover-text {
+    color: #58A4B0; 
+}
+.hover-text:hover {
+    color: #373F51; 
+}
+.submit-button {
+    background-color: #58A4B0 !important; /* Needed important here to override Tailwind */
+    color: #FFFFFF; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+.submit-button:hover {
+    background-color: #373F51 !important;
+}
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+    .hover-text {
+        color: #58A4B0; 
+    }
+    .hover-text:hover {
+        color: #FFFFFF; 
+    }
+    .submit-button {
+        background-color: #58A4B0 !important;
+    }
+    .submit-button:hover {
+        background-color: #373F51 !important;
+    }
+}
