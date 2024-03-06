@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-200 dark:bg-gray-900">
 <head>
     <meta charset="UTF-8">
     <title>ReMarket - Buy and Sell</title>
     <link rel="icon" href="./logo/logo.ico">
-    <link rel="stylesheet" href="./stylesheets/styles-signup.css">
-
-    <link rel="apple-touch-icon" href="apple-touch-icons/apple-touch-icon-iphone-60x60.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icons/apple-touch-icon-ipad-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icons/apple-touch-icon-iphone-retina-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icons/apple-touch-icon-ipad-retina-152x152.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="stylesheets/styles-login-signup.css">
 </head>
-
-<body>
-    <div class ="container">
-        <a href="index.html">
-            <img src="./logo/logo.png" alt="ReMarket Logo" class="logo">
+<body class="bg-gray-200 dark:bg-gray-900">
+    <div class="min-h-screen flex flex-col justify-center items-center py-12">
+        <a href="index.html" class="mb-8">
+            <img src="./logo/logo.png" alt="ReMarket Logo" class="h-20">
         </a>
-        <h2>Create an Account</h2>
-        <form action="./php-scripts/user_signup.php" method="post">
-            <input type="text" name="fname" placeholder="First Name" required>
-            <input type="text" name="lname" placeholder="Last Name" required>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="text" name="phone" placeholder="Phone" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" name="signup" value="Sign Up">
-        </form>
-        <div class="form-footer">
-            <a href="login.html">Already have an account? Log in</a>
+        <div class="w-full max-w-lg px-6 py-8 bg-white dark:bg-gray-800 shadow-md rounded-lg">
+            <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">Create an Account</h2>
+            <form action="./php-scripts/user_signup.php" method="post" class="space-y-6">
+                <div>
+                    <label for="fname" class="text-sm font-medium text-gray-700 dark:text-gray-300">First Name</label>
+                    <input type="text" id="fname" name="fname" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="John">
+                </div>
+                <div>
+                    <label for="lname" class="text-sm font-medium text-gray-700 dark:text-gray-300">Last Name</label>
+                    <input type="text" id="lname" name="lname" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Doe">
+                </div>
+                <div>
+                    <label for="username" class="text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+                    <input type="text" id="username" name="username" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="johndoe">
+                </div>
+                <div>
+                    <label for="phone" class="text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
+                    <input type="text" id="phone" name="phone" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="123-456-7890">
+                </div>
+                <div>
+                    <label for="email" class="text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="johndoe@example.com">
+                </div>
+                <div>
+                    <label for="password" class="text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                    <input type="password" id="password" name="password" required class="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <input type="submit" name="signup" value="Sign Up" class="submit-button group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md">
+                <p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
+                    Already have an account?
+                    <a href="login.html" class="hover-text">Log in</a>
+                </p>
+            </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
