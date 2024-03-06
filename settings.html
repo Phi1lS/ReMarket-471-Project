@@ -66,18 +66,18 @@
     <!-- Update Payment Information Form -->
 
     <h3>Update Payment Information</h3>
-    <form action="path/to/payment_processing_script.php" method="POST">
+    <form action="./php-scripts/set_payment.php" method="POST">
         <label for="cardholder-name">Cardholder Name:</label>
         <input type="text" id="cardholder-name" name="cardholder_name" required>
         
         <label for="card-number">Card Number:</label>
         <input type="text" id="card-number" name="card_number" required>
         
-        <label for="expiry-date">Expiry Date:</label>
-        <input type="text" id="expiry-date" name="expiry_date" required>
+        <label for="expiration_date">Expiry Date:</label>
+        <input type="text" id="expiration_date" name="expiration_date" required>
         
-        <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" required>
+        <label for="CVV">CVV:</label>
+        <input type="text" id="CVV" name="CVV" required>
         
         <input type="submit" value="Update">
     </form>
