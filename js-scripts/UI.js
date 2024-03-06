@@ -51,3 +51,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    function toggleDropdown() {
+        var dropdown = document.getElementById("user-menu");
+        dropdown.classList.toggle("hidden");
+    }
+
+    function toggleMobileMenu() {
+        var menu = document.getElementById("mobile-menu");
+        if (menu) {
+            menu.classList.toggle("hidden");
+            menu.classList.toggle("-translate-x-full");
+        }
+    }
+    
