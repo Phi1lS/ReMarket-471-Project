@@ -35,5 +35,5 @@ require_once "pdo.php";
     // Close the statement and the connection
     $stmt = null;
     $pdo = null;
-    header('Location: ./index.html');
+    header('Location: ../index.html');
 ?>
