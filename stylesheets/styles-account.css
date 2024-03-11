@@ -1,155 +1,19 @@
-.account-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-picture {
-    background: #FFFFFF;
-}
-
-.profile-section {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-section .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #58A4B0;
-    margin-bottom: 10px;
-}
-
-.user-description {
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-.reviews-section,
-.listings-section {
-    margin-bottom: 20px;
-}
-
-.review-form-section,
-.listing-form-section {
-    margin-bottom: 20px;
-    padding: 20px;
-    border-top: 1px solid #ccc;
-}
-
-.review-form-section textarea,
-.listing-form-section input[type='text'],
-.listing-form-section textarea {
-    width: calc(100% - 22px); /* Subtract total padding and border */
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.review-form-section input[type="submit"],
-.listing-form-section input[type="submit"] {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #58A4B0;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.review-form-section input[type="submit"]:hover,
-.listing-form-section input[type="submit"]:hover {
-    background-color: #373F51;
-}
-
-/* Styles for listing items */
-.listing-item {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background: #f9f9f9;
-}
-
-.listing-item img {
-    max-width: 200px; /* Adjust based on your layout */
-    height: auto;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-.listing-item h3 {
-    flex-grow: 1;
-    margin: 0;
-    padding: 0 10px;
-}
-
-.listing-item p {
-    flex-basis: 100%;
-    margin-top: 10px;
-}
-
-.listing-item .price {
-    color: #58A4B0;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-/* Media query for responsive adjustments */
-@media (max-width: 768px) {
-    .listing-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .listing-item img {
-        max-width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
 .star-rating {
-    color: #FFD700; /* Gold color for stars */
+    direction: rtl;
 }
 
-.star-rating i {
-    margin-right: 2px; /* Space out the stars */
-}
-
-/* Hide the radio buttons */
-.star-rating-input input[type="radio"] {
-    display: none;
-}
-
-/* Style labels to represent stars */
-.star-rating-input label {
-    float: right;
-    padding: 10px;
-    font-size: 30px;
-    color: #444;
-    transition: all 0.2s;
-}
-
-/* Change color when hovered over or selected */
-.star-rating-input input[type="radio"]:checked ~ label,
-.star-rating-input label:hover,
-.star-rating-input label:hover ~ label {
-    color: #FD4;
+.star-rating label {
+    color: gray;
+    font-size: 24px;
     cursor: pointer;
+    transition: color 200ms;
 }
 
-/* Clear float */
-.star-rating-input:after {
-    content: "";
-    display: block;
-    clear: both;
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
 }

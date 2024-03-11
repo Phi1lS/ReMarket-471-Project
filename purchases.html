@@ -1,69 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-100 dark:bg-gray-900">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Purchases - ReMarket</title>
-    <link rel="stylesheet" href="./stylesheets/styles-home.css"> <!-- Link to home stylesheet -->
-    <!--Font Awesome icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Purchase History</title>
+    <link rel="stylesheet" href="output.css">
 </head>
-<body>
-    <!--Header information-->
-    <div class="header">
-        <a href="index.html">
-            <img src="./logo/logo.png" alt="ReMarket Logo" class="site-logo">
+<body class="h-full bg-gray-100 dark:bg-gray-900">
+    <!-- Header -->
+    <nav class="fixed top-0 z-50 w-full bg-remarket-blue p-4 dark:bg-remarket-dark flex items-center justify-between">
+        <a href="index.html" class="flex items-center mr-4 md:mr-6">
+            <img src="./logo/logo.png" alt="ReMarket Logo" class="h-12 md:h-16">
         </a>
-
-        <div class="search-container">
-            <input type="text" placeholder="Search for anything">
+        
+        <div class="md:hidden mr-4 text-xl md:text-2xl">
+            <button onclick="toggleMobileMenu()" class="text-gray-200 hover:text-white focus:outline-none focus:text-white">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
 
-        <div class="cart-icon-container">
-            <i class="fas fa-shopping-cart"></i>
+        <div class="flex-grow flex items-center justify-end space-x-4">
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark">Home</a>
+                <a href="create_post.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark">Create New Post</a>
+            </div>
+
+            <div class="flex bg-white p-2 rounded">
+                <input type="search" placeholder="Search for anything" class="px-2 py-1 w-full rounded">
+                <button class="text-remarket-dark">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="text-white hover:text-gray-300 text-xl">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+
+            <div class="relative">
+                <button onclick="toggleDropdown()" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
+                    <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
+                </button>
+                <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
+                    <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
+                    <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
+                    <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+                    <form method="POST" action="./php-scripts/logout.php">
+                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
+                    </form>
+                </div>
+            </div>
+            
         </div>
 
-        <div class="profile-icon-container">
-            <!--PLACEHOLDER TEMPORARY IMAGE. DEFAULT PROFILE PIC UNTIL PHP IS ADDED.-->
-            <!--TODO: Add PHP to query the user's profile picture based on their primary key (user id) and display it dynamically with HTML-->
-            <img src="other-images/default_profile_pic.jpg" alt="Profile" class="profile-icon">
-            <!-- Account dropdown -->
-            <div class="account-dropdown" style="display: none;">
-                <a href="account_page.html">Account Page</a>
-                <a href="purchases.html">Purchases</a>
-                <a href="settings.html">Settings</a>
+        <!-- Sidebar Menu -->
+        <div id="mobile-menu" class="fixed inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out md:hidden z-50 bg-white dark:bg-gray-800 shadow-xl hidden">
+            <div class="p-5">
+                <div class="flex items-center justify-between">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav class="mt-8">
+                    <a href="index.html" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">Home</a>
+                    <a href="create_post.html" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">Create New Post</a>
+                </nav>
+            </div>
+        </div>
+    </nav>
+    <div class="h-[64px] md:h-[80px]"></div>
+
+
+    <!-- Slide-over menu for Shopping Cart -->
+    <div id="shopping-cart" class="fixed inset-0 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" style="z-index: 1000;">
+        <!-- Slide-over backdrop -->
+        <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+            <!--
+              Background backdrop, show/hide based on slide-over state.
+          
+              Entering: "ease-in-out duration-500"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-500"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+          
+            <div class="fixed inset-0 overflow-hidden">
+              <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                  <!--
+                    Slide-over panel, show/hide based on slide-over state.
+          
+                    Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-full"
+                      To: "translate-x-0"
+                    Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-0"
+                      To: "translate-x-full"
+                  -->
+                  <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-remarket-dark">
+                      <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                        <div class="flex items-start justify-between">
+                          <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100" id="slide-over-title">Shopping cart</h2>
+                          <div class="ml-3 flex h-7 items-center">
+                            <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400">
+                              <span class="absolute -inset-0.5"></span>
+                              <span class="sr-only">Close panel</span>
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+          
+                        <div class="mt-8">
+                          <div class="flow-root">
+                            <ul role="list" class="-my-6 divide-y divide-gray-200">
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
+                                </div>
+          <!-- TODO: PHP Script to dynamically fetch and generate cart items into the slideover cart -->
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                                      <h3>
+                                        <a href="#">Throwback Hip Bag</a>
+                                      </h3>
+                                      <p class="ml-4">$90.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Salmon</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
+          
+                                    <div class="flex">
+                                        <!-- TODO: PHP Script that makes remove item remove cart item from cart -->
+                                        <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
+                                </div>
+          
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                                      <h3>
+                                        <a href="#">Medium Stuff Satchel</a>
+                                      </h3>
+                                      <p class="ml-4">$32.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Blue</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
+          
+                                    <div class="flex">
+                                      <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+          
+                              <!-- More products... -->
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                        <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                          <p>Subtotal</p>
+                          <p>$112.00</p>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes calculated at checkout.</p>
+                        <div class="mt-6">
+                          <a href="checkout.html" class="flex items-center justify-center rounded-md border border-transparent bg-remarket-blue p-4 dark:bg-remarket-teal-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-remarket-dark dark:hover:bg-remarket-blue">Checkout</a>
+                        </div>
+                        <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                          <p>
+                            or
+                            <button type="button" class="font-medium text-bg-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-blue">
+                              Continue Shopping
+                              <span aria-hidden="true"> &rarr;</span>
+                            </button>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!--END HEADER-->
+    
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Order history</h1>
+        <p class="mb-4 text-gray-500 dark:text-gray-400">Check the status of recent orders, manage returns, and discover similar products.</p>
+
+        <!-- First order -->
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6">
+            <div class="px-4 py-8 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number WU88191111</h3>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Jul 6, 2021</p>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $230.00</p>
+                
+                <!-- First item -->
+                <div class="mt-6 sm:mt-8 flex justify-between items-center">
+                    <div class="flex">
+                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_micro_backpack_image" alt="Micro Backpack">
+                        <div class="ml-4">
+                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Micro Backpack</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @username</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (123) 456-7890</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Jul 12, 2021</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-900 dark:text-white">$70.00</p>
+                </div>
+
+                <!-- Second item -->
+                <div class="mt-6 sm:mt-8 flex justify-between items-center">
+                    <div class="flex">
+                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_additional_item_image" alt="Additional Item">
+                        <div class="ml-4">
+                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Additional Item Name</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @secondusername</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on [Delivery Date]</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-900 dark:text-white">[Item Price]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Order Block -->
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+            <div class="px-4 py-8 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number AT4841546</h3>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Dec 22, 2020</p>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $80.00</p>
+                
+                <!-- Item in the second order -->
+                <div class="mt-6 sm:mt-8 flex justify-between items-center">
+                    <div class="flex">
+                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_nomad_shopping_tote_image" alt="Nomad Shopping Tote">
+                        <div class="ml-4">
+                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Nomad Shopping Tote</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @anotherusername</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Dec 30, 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-900 dark:text-white">$40.00</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="nav-bar">
-        <nav>
-            <!-- 
-            <a href="index.php">Home</a>
-            <a href="create_post.php">Create New Post</a>
-            <a href="add_payment.php">Add Payment</a>
-            <a href="logout.php">Logout</a> 
-            -->
-            <a href="index.html">Home</a>
-            <a href="create_post.html">Create New Post</a>
-            <a href="login.html">Logout</a>
-        </nav>
-    </div>
-    
-    <main class="purchases-container">
-        <h1 class ="purchase-title">Your Purchases</h1>
-        <section class="purchases">
-            <!-- TODO: Individual purchase items will be inserted here via PHP and dynamically displayed with HTML-->
-        </section>
-    </main>
-
-    <div class="cart-dropdown" style="display: none;">
-        <!--TODO: Use PHP to read and display cart items in dropdown -->
-        <!--TODO: Use PHP to check if there are cart items in the database. If there are none, display "No items are in your cart!"-->
-        <!--This is TEMPORARY. REMOVE THIS WHEN PHP IS ADDED--> No items are in your cart!
-        <div class="cart-dropdown-footer">
-            <a href="checkout.html" class="checkout-button">Go to Checkout</a>
-        </div>
-    </div>
-    <script src="js-scripts/ui.js"></script>
 </body>
 </html>
