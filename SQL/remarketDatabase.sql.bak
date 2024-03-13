@@ -7,6 +7,7 @@ CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `phone` int NOT NULL,
   `email` varchar(45) NOT NULL,
+  `profile_pic` MEDIUMBLOB,
   `password` varchar(120) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
