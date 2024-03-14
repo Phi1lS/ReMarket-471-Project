@@ -1,19 +1,14 @@
-document.getElementById('checkout-button').addEventListener('click', function() {
-    // Show the confirmation modal
-    document.getElementById('confirmation-modal').style.display = 'block';
-});
+// Get the checkbox and billing address section
+const billingAddressCheckbox = document.getElementById('billing-address');
+const billingAddressSection = document.getElementById('billing-address-section');
 
-document.getElementById('confirm-purchase').addEventListener('click', function() {
-    // Process the purchase
-    // This would involve sending data to the server to update the database
-    // indicating that the items have been purchased.
-    // For now, we'll just log to the console
-    console.log('Purchase confirmed.');
-    // Close the modal
-    document.getElementById('confirmation-modal').style.display = 'none';
-});
-
-document.getElementById('cancel-purchase').addEventListener('click', function() {
-    // Close the modal without doing anything
-    document.getElementById('confirmation-modal').style.display = 'none';
+// Add event listener for when the checkbox changes
+billingAddressCheckbox.addEventListener('change', function() {
+    // If the checkbox is checked, hide the billing address section
+    if (this.checked) {
+        billingAddressSection.classList.add('hidden');
+    } else {
+        // Otherwise, show it
+        billingAddressSection.classList.remove('hidden');
+    }
 });
