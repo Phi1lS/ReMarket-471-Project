@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReMarket - Buy and Sell</title>
+    <link rel="icon" href="./logo/logo.ico">
+
+    <!--Font Awesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!--<script src="https://cdn.tailwindcss.com"></script>-->
+    <link rel="stylesheet" href="output.css">
+
+    <link rel="apple-touch-icon" href="apple-touch-icons/apple-touch-icon-iphone-60x60.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icons/apple-touch-icon-ipad-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icons/apple-touch-icon-iphone-retina-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icons/apple-touch-icon-ipad-retina-152x152.png">
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="fixed top-0 z-50 w-full bg-remarket-blue p-4 dark:bg-remarket-dark flex items-center justify-between">
+        <a href="index.html" class="flex items-center mr-4 md:mr-6">
+            <img src="./logo/logo.png" alt="ReMarket Logo" class="h-12 md:h-16">
+        </a>
+        
+        <div class="md:hidden mr-4 text-xl md:text-2xl">
+            <button onclick="toggleMobileMenu()" class="text-gray-200 hover:text-white focus:outline-none focus:text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+  
+        <div class="flex-grow flex items-center justify-end space-x-4">
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark dark:hover:bg-gray-800">Home</a>
+                <a href="create_post.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark dark:hover:bg-gray-800">Create New Post</a>
+            </div>
+  
+            <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
+                <input type="search" placeholder="Search for anything" class="dark:bg-gray-600 px-2 py-1 w-full rounded">
+                <button class="text-remarket-dark dark:text-gray-300">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+  
+            <div class="text-white hover:text-gray-300 text-xl">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+  
+            <div class="relative">
+                <button onclick="toggleDropdown()" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
+                    <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
+                </button>
+                <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
+                    <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
+                    <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
+                    <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+                    <form method="POST" action="./php-scripts/logout.php">
+                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+  
+        <!-- Sidebar Menu -->
+        <div id="mobile-menu" class="fixed inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out md:hidden z-50 bg-white dark:bg-gray-800 shadow-xl hidden">
+            <div class="p-5">
+                <div class="flex items-center justify-between">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav class="mt-8">
+                    <a href="index.html" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">Home</a>
+                    <a href="create_post.html" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">Create New Post</a>
+                </nav>
+            </div>
+        </div>
+    </nav>
+    <div class="h-[64px] md:h-[80px]"></div>
+  
+  
+    <!-- Slide-over menu for Shopping Cart -->
+    <div id="shopping-cart" class="fixed inset-0 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" style="z-index: 1000;">
+        <!-- Slide-over backdrop -->
+        <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+            <!--
+              Background backdrop, show/hide based on slide-over state.
+          
+              Entering: "ease-in-out duration-500"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-500"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+          
+            <div class="fixed inset-0 overflow-hidden">
+              <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                  <!--
+                    Slide-over panel, show/hide based on slide-over state.
+          
+                    Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-full"
+                      To: "translate-x-0"
+                    Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-0"
+                      To: "translate-x-full"
+                  -->
+                  <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-remarket-dark">
+                      <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                        <div class="flex items-start justify-between">
+                          <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100" id="slide-over-title">Shopping cart</h2>
+                          <div class="ml-3 flex h-7 items-center">
+                            <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400">
+                              <span class="absolute -inset-0.5"></span>
+                              <span class="sr-only">Close panel</span>
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+          
+                        <div class="mt-8">
+                          <div class="flow-root">
+                            <ul role="list" class="-my-6 divide-y divide-gray-200">
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
+                                </div>
+          <!-- TODO: PHP Script to dynamically fetch and generate cart items into the slideover cart -->
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                                      <h3>
+                                        <a href="#">Throwback Hip Bag</a>
+                                      </h3>
+                                      <p class="ml-4">$90.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Salmon</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
+          
+                                    <div class="flex">
+                                        <!-- TODO: PHP Script that makes remove item remove cart item from cart -->
+                                        <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
+                                </div>
+          
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                                      <h3>
+                                        <a href="#">Medium Stuff Satchel</a>
+                                      </h3>
+                                      <p class="ml-4">$32.00</p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Blue</p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
+          
+                                    <div class="flex">
+                                      <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+          
+                              <!-- More products... -->
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                        <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                          <p>Subtotal</p>
+                          <p>$112.00</p>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes calculated at checkout.</p>
+                        <div class="mt-6">
+                          <a href="checkout.html" class="flex items-center justify-center rounded-md border border-transparent bg-remarket-blue p-4 dark:bg-remarket-teal-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-teal-700">Checkout</a>
+                        </div>
+                        <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                          <p>
+                            or
+                            <button type="button" class="font-medium text-bg-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-blue dark:hover:text-teal-700">
+                              Continue Shopping
+                              <span aria-hidden="true"> &rarr;</span>
+                            </button>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  
+    <!-- END HEADER -->
+
+    <div class="bg-gray-100 dark:bg-gray-800">
+        <div class="pt-6">
+        <nav aria-label="Breadcrumb">
+            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            
+                <!-- ITEM NAME GOES HERE -->
+            <li class="text-sm">
+                <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-white">Basic Tee 6-Pack</a>
+            </li>
+            </ol>
+        </nav>
+    
+        <!-- Image gallery -->
+        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+            <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+            </div>
+            <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+            <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="Model wearing plain black basic tee." class="h-full w-full object-cover object-center">
+            </div>
+            <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="Model wearing plain gray basic tee." class="h-full w-full object-cover object-center">
+            </div>
+            </div>
+            <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+            </div>
+        </div>
+    
+        <!-- Product info -->
+        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">Basic Tee 6-Pack</h1>
+            </div>
+    
+            <!-- Options -->
+            <div class="mt-4 lg:row-span-3 lg:mt-0">
+            <h2 class="sr-only">Product information</h2>
+            <p class="text-3xl tracking-tight text-gray-900 dark:text-white">$192</p>
+    
+            <!-- Reviews -->
+            <div class="mt-6">
+                <h3 class="sr-only">Reviews</h3>
+                <div class="flex items-center">
+                <div class="flex items-center">
+                    <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+                    <svg class="text-gray-900 dark:text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                    <svg class="text-gray-900 dark:text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                    <svg class="text-gray-900 dark:text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                    <svg class="text-gray-900 dark:text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                    <svg class="text-gray-200 dark:text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <p class="sr-only">4 out of 5 stars</p>
+                <a href="#" class="ml-3 text-sm font-medium text-remarket-blue hover:text-remarket-teal-700">117 reviews</a>
+                </div>
+            </div>
+    
+            <form class="mt-10">
+                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-remarket-blue hover:bg-remarket-teal-700 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-remarket-teal-500 focus:ring-offset-2">Add to bag</button>
+            </form>
+            </div>
+    
+            <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+            <!-- Description and details -->
+            <div>
+                <h3 class="sr-only">Description</h3>
+    
+                <div class="py-10 space-y-6">
+                <p class="text-base text-gray-900 dark:text-gray-300">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="js-scripts/ui.js"></script>
+</body>

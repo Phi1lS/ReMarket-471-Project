@@ -4,6 +4,9 @@ module.exports = {
     darkMode: 'media',
     theme: {
         extend: {
+          gridTemplateRows: {
+            '[auto,auto,1fr': 'auto auto 1fr',
+          },
           colors: {
             // Define your custom colors here
             // Replace these with your actual color values
