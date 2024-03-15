@@ -30,11 +30,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         exit;
     } else {
         // Store the user ID in the session:
-        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['id'] = $row['id'];
+
+        // Insert the user into the active users table
+        $sql = "INSERT INTO active_users (user_id) VALUES (:user_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ':user_id' => $row['id']
+        ));
 
         // Redirect to the index page (or any other desired page):
         header('Location: ../index.html');
         exit;
     }
 }
+
 ?>
+
