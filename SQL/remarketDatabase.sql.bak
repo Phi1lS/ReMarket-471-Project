@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS remarket;
+CREATE DATABASE remarket;
+USE remarket;
+
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
@@ -18,31 +22,6 @@ UNLOCK TABLES;
 
 /* ----------------------------------------------------- */
 
-
-
-
-CREATE TABLE `payment_info` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `cardholder_name` varchar(100) NOT NULL,
-  `card_number` int NOT NULL,
-  `expiration_date` DATE,
-  `CVV` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id_idx_payment` (`user_id`),
-  CONSTRAINT `user_id_payment` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB;
-
-LOCK TABLES `payment_info` WRITE;
-
-UNLOCK TABLES;
-
-
-/* ----------------------------------------------------- */
-
-
-
-
 CREATE TABLE `shipping_info` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(120) NOT NULL,
@@ -56,6 +35,31 @@ CREATE TABLE `shipping_info` (
   KEY `user_id_idx_shipping` (`user_id`),
   CONSTRAINT `user_id_shipping` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
+
+/* ----------------------------------------------------- */
+
+
+CREATE TABLE `payment_info` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `cardholder_name` varchar(100) NOT NULL,
+  `card_number` int NOT NULL,
+  `expiration_date` DATE,
+  `CVV` int NOT NULL,
+  `address` int NOT NULL,  -- New field
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx_payment` (`user_id`),
+  KEY `address_idx_payment` (`address`),  -- New index
+  CONSTRAINT `user_id_payment` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `address_payment` FOREIGN KEY (`address`) REFERENCES `shipping_info` (`id`)  -- New constraint
+) ENGINE=InnoDB;
+
+
+LOCK TABLES `payment_info` WRITE;
+
+UNLOCK TABLES;
+
+
 
 
 
@@ -120,7 +124,7 @@ UNLOCK TABLES;
 
 
 
-
+DROP TABLE IF EXISTS `active_users`;
 
 CREATE TABLE `active_users` (
   `user_id` INT NOT NULL,
@@ -128,7 +132,9 @@ CREATE TABLE `active_users` (
 );
 
 
+LOCK TABLES `active_users` WRITE;
 
+UNLOCK TABLES;
 
 
 
