@@ -14,14 +14,14 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 
-
+UNLOCK TABLES;
 
 /* ----------------------------------------------------- */
 
 
 
 
-CREATE TABLE `paymentInfo` (
+CREATE TABLE `payment_info` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `cardholder_name` varchar(100) NOT NULL,
@@ -29,10 +29,11 @@ CREATE TABLE `paymentInfo` (
   `expiration_date` DATE,
   `CVV` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  KEY `user_id_idx_payment` (`user_id`),
+  CONSTRAINT `user_id_payment` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB;
 
+LOCK TABLES `payment_info` WRITE;
 
 UNLOCK TABLES;
 
@@ -42,16 +43,18 @@ UNLOCK TABLES;
 
 
 
-CREATE TABLE `shippingInfo` (
-    `street` VARCHAR(100) NOT NULL,
-    `city` VARCHAR(100) NOT NULL,
-    `state` VARCHAR(100) NOT NULL,
-    `zip` INT NOT NULL,
-    `country` VARCHAR(100) NOT NULL,
-    `user_id` INT NOT NULL,
-    CONSTRAINT `fk_user_shippingInfo`
-        FOREIGN KEY (`user_id`)
-        REFERENCES `user` (`id`)
+CREATE TABLE `shipping_info` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(120) NOT NULL,
+  `user_id` int NOT NULL,
+  `street` VARCHAR(100) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `state` VARCHAR(100) NOT NULL,
+  `zip` INT NOT NULL,
+  `country` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx_shipping` (`user_id`),
+  CONSTRAINT `user_id_shipping` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
 
@@ -66,6 +69,7 @@ DROP TABLE IF EXISTS `item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(100) NOT NULL,
   `item_picture` BLOB,
   `item_description` varchar(2000) NOT NULL,
   `cost` decimal(10,2) NOT NULL,
@@ -73,7 +77,7 @@ CREATE TABLE `item` (
   `contact_number` int NOT NULL,
   `seller_id` int NOT NULL,
   `buyer_id` int DEFAULT NULL,
-  `time_posted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `buyer_id_idx` (`buyer_id`),
   KEY `seller_id_idx` (`seller_id`),

@@ -426,24 +426,24 @@
 
             <!-- Add Address Form -->
             <div id="add-address-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg" style="display: none;">
-                <form>
+                <form action="./php-scripts/set_shipping_info.php" method="post">
                     <label for="add-name" class="block text-sm font-medium mb-1">Name:</label>
-                    <input type="text" id="add-name" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Name" required>
+                    <input type="text" id="add-name" name="name" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Name" required>
 
                     <label for="add-street" class="block text-sm font-medium mb-1">Street:</label>
-                    <input type="text" id="add-street" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Street" required>
+                    <input type="text" id="add-street" name="street" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Street" required>
 
                     <label for="add-city" class="block text-sm font-medium mb-1">City:</label>
-                    <input type="text" id="add-city" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="City" required>
+                    <input type="text" id="add-city" name="city" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="City" required>
 
                     <label for="add-state" class="block text-sm font-medium mb-1">State:</label>
-                    <input type="text" id="add-state" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="State" required>
+                    <input type="text" id="add-state" name="state" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="State" required>
 
                     <label for="add-zip" class="block text-sm font-medium mb-1">ZIP Code:</label>
-                    <input type="text" id="add-zip" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="ZIP" required>
+                    <input type="text" id="add-zip" name="zip" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="ZIP" required>
 
                     <label for="add-country" class="block text-sm font-medium mb-1">Country:</label>
-                    <input type="text" id="add-country" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Country" required>
+                    <input type="text" id="add-country" name="country" class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue" placeholder="Country" required>
 
                     <!-- Add more fields for state, zip, country, etc. -->
 
