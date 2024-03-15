@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS remarket;
+CREATE DATABASE remarket;
+USE remarket;
+
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
@@ -14,45 +18,48 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 
+UNLOCK TABLES;
 
+/* ----------------------------------------------------- */
+
+CREATE TABLE `shipping_info` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(120) NOT NULL,
+  `user_id` int NOT NULL,
+  `street` VARCHAR(100) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `state` VARCHAR(100) NOT NULL,
+  `zip` INT NOT NULL,
+  `country` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx_shipping` (`user_id`),
+  CONSTRAINT `user_id_shipping` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+);
 
 /* ----------------------------------------------------- */
 
 
-
-
-CREATE TABLE `paymentInfo` (
+CREATE TABLE `payment_info` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `cardholder_name` varchar(100) NOT NULL,
   `card_number` int NOT NULL,
   `expiration_date` DATE,
   `CVV` int NOT NULL,
+  `address` int NOT NULL,  -- New field
   PRIMARY KEY (`id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  KEY `user_id_idx_payment` (`user_id`),
+  KEY `address_idx_payment` (`address`),  -- New index
+  CONSTRAINT `user_id_payment` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `address_payment` FOREIGN KEY (`address`) REFERENCES `shipping_info` (`id`)  -- New constraint
 ) ENGINE=InnoDB;
 
+
+LOCK TABLES `payment_info` WRITE;
 
 UNLOCK TABLES;
 
 
-/* ----------------------------------------------------- */
-
-
-
-
-CREATE TABLE `shippingInfo` (
-    `street` VARCHAR(100) NOT NULL,
-    `city` VARCHAR(100) NOT NULL,
-    `state` VARCHAR(100) NOT NULL,
-    `zip` INT NOT NULL,
-    `country` VARCHAR(100) NOT NULL,
-    `user_id` INT NOT NULL,
-    CONSTRAINT `fk_user_shippingInfo`
-        FOREIGN KEY (`user_id`)
-        REFERENCES `user` (`id`)
-);
 
 
 
@@ -66,6 +73,7 @@ DROP TABLE IF EXISTS `item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(100) NOT NULL,
   `item_picture` BLOB,
   `item_description` varchar(2000) NOT NULL,
   `cost` decimal(10,2) NOT NULL,
@@ -73,7 +81,7 @@ CREATE TABLE `item` (
   `contact_number` int NOT NULL,
   `seller_id` int NOT NULL,
   `buyer_id` int DEFAULT NULL,
-  `time_posted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `buyer_id_idx` (`buyer_id`),
   KEY `seller_id_idx` (`seller_id`),
@@ -116,7 +124,7 @@ UNLOCK TABLES;
 
 
 
-
+DROP TABLE IF EXISTS `active_users`;
 
 CREATE TABLE `active_users` (
   `user_id` INT NOT NULL,
@@ -124,7 +132,9 @@ CREATE TABLE `active_users` (
 );
 
 
+LOCK TABLES `active_users` WRITE;
 
+UNLOCK TABLES;
 
 
 

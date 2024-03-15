@@ -5,14 +5,14 @@
     // Import pdo.php to make a connection to the database:
     require_once "pdo.php";
 
-    if (isset($_POST['street']) && isset($_POST['city']) && isset($_POST['state']) 
+    if (isset($_POST['name']) && isset($_POST['street']) && isset($_POST['city']) && isset($_POST['state']) 
         && isset($_POST['zip']) && isset($_POST['country'])) 
     {
         // Retrieving user ID
         $user_id = $_SESSION['user_id'];
     
-        $sql = "INSERT INTO shipping_info (user_id, street, city, state, zip, country)
-            VALUES (:user_id, :street, :city, :state, :zip, :country)";
+        $sql = "INSERT INTO shipping_info (user_id, name, street, city, state, zip, country)
+            VALUES (:user_id, :name, :street, :city, :state, :zip, :country)";
     
         // Parse the data and prepare the query:
         $stmt = $pdo->prepare($sql);
@@ -20,6 +20,7 @@
          // Execute the query into the database:
         $stmt->execute(array(
         'user_id' => $user_id,
+        'name' => $_POST['name'],
         'street' => $_POST['street'],
         'city' => $_POST['city'],
         'state' => $_POST['state'],
