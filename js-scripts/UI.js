@@ -92,25 +92,43 @@ window.addEventListener('scroll', () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  let lastScrollTop = 0;
-  const header = document.querySelector('nav'); // Adjust this if your header has a different selector
-  const breakpoint = 768; // Define mobile device width
 
-  window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+let lastScrollTop = 0;
+let scrollUpDistance = 0;
 
-    if (window.innerWidth <= breakpoint) {
-      if (scrollTop > lastScrollTop) {
-        // Scroll Down
-        header.classList.add("translate-up");
-        header.classList.remove("translate-down");
-      } else {
-        // Scroll Up
-        header.classList.add("translate-down");
-        header.classList.remove("translate-up");
-      }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+// Apply smooth transition
+header.style.transition = 'top 0.3s';
+
+window.addEventListener('scroll', function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Check for mobile view
+  if (window.innerWidth <= 768) {
+    // Always show the header when at the top of the page
+    if (scrollTop <= 0) {
+      header.style.top = '0'; // Show the header
+      return;
     }
-  }, false);
-});
+
+    if (scrollTop > lastScrollTop) {
+      // Scrolling down
+      header.style.top = `-${header.offsetHeight}px`; // Hide the header
+      scrollUpDistance = 0; // Reset scroll up distance
+    } else {
+      // Scrolling up
+      scrollUpDistance += lastScrollTop - scrollTop;
+      if (scrollUpDistance > 50) { // The user has scrolled up 50px
+        header.style.top = '0'; // Show the header
+      }
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+  } else {
+    // For desktop, always show the header
+    header.style.top = '0';
+  }
+}, false);
+
+
+
+
