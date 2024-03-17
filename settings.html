@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-100 dark:bg-gray-900">
+<html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchase History</title>
-    <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="stylesheets/styles-ui.css">
+    <title>Account Settings - ReMarket</title>
+    <!-- Include Tailwind CSS -->
+    <link href="output.css" rel="stylesheet">
     <!--Font Awesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
-<body class="h-full bg-gray-100 dark:bg-gray-900 dark:caret-white">
+
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white dark:caret-white">
     <!-- Header -->
     <nav class="fixed top-0 z-50 w-full bg-remarket-blue p-4 dark:bg-remarket-dark flex items-center justify-between">
       <a href="index.html" class="flex items-center mr-4 md:mr-6">
-          <img src="./logo/logo.png" alt="ReMarket Logo" class="h-12 md:h-16">
+        <img src="./logo/ReMarketlogo.png" alt="ReMarket Logo" class="h-20 md:h-24 -my-4 md:-my-6">
       </a>
       
       <div class="md:hidden mr-4 text-xl md:text-2xl">
@@ -142,7 +144,7 @@
         
                                   <div class="flex">
                                       <!-- TODO: PHP Script that makes remove item remove cart item from cart -->
-                                      <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                      <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
                                   </div>
                                 </div>
                               </div>
@@ -166,7 +168,7 @@
                                   <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
         
                                   <div class="flex">
-                                    <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-dark dark:hover:text-remarket-blue">Remove</button>
+                                    <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
                                   </div>
                                 </div>
                               </div>
@@ -190,7 +192,7 @@
                       <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                           or
-                          <button type="button" class="font-medium text-bg-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-blue dark:hover:text-teal-700">
+                          <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-teal-700">
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>
                           </button>
@@ -206,71 +208,416 @@
   </div>
 
   <!-- END HEADER -->
-    
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Order history</h1>
-        <p class="mb-4 text-gray-500 dark:text-gray-400">Check the status of recent orders, manage returns, and discover similar products.</p>
 
-        <!-- First order -->
-        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6">
-            <div class="px-4 py-8 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number WU88191111</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Jul 6, 2021</p>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $230.00</p>
-                
-                <!-- First item -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_micro_backpack_image" alt="Micro Backpack">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Micro Backpack</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @username</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (123) 456-7890</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Jul 12, 2021</p>
+    <div class="container mx-auto px-4 py-6 flex">
+        <div class="container mx-auto px-4 py-6">
+            <!-- Settings Header -->
+            <div class="flex border-b border-gray-700 mb-6">
+                <a href="#account-info"
+                    class="text-black dark:text-white py-2 px-4 inline-block hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-remarket-blue">Account</a>
+                <a href="#billing-info"
+                    class="text-black dark:text-white py-2 px-4 inline-block hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-remarket-blue">Billing</a>
+                <a href="#addresses"
+                    class="text-black dark:text-white py-2 px-4 inline-block hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-remarket-blue">Addresses</a>
+                <!-- ... other headers ... -->
+            </div>
+
+            <div id="account-info" class="settings-content bg-white dark:bg-gray-800 p-6 rounded-lg">
+                <!-- Settings Content -->
+                <section class="w-4/5 ml-4">
+                    <!-- Personal Information Section -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
+                        <h2 class="text-xl mb-2">Personal Information</h2>
+                        <div class="flex flex-wrap -mx-3">
+                            <!-- Left column for avatar -->
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                <div class="flex items-center">
+                                    <img class="w-24 h-24 rounded-full" src="path_to_avatar_image" alt="Avatar"
+                                        id="avatar-image">
+                                    <div class="ml-4">
+                                        <label for="avatar-upload" class="text-sm font-semibold cursor-pointer">Change
+                                            Your Profile Picture</label>
+                                        <input type="file" id="avatar-upload" class="hidden" accept="image/*"
+                                            onchange="previewAvatar()">
+                                        <p class="text-xs">JPG, GIF, or PNG. 1MB max.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right column for the form -->
+                            <div class="w-full md:w-2/3 px-3">
+                                <div class="mb-4">
+                                    <label for="first-name" class="block text-sm font-medium mb-1">First Name:</label>
+                                    <input type="text" id="first-name"
+                                        class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                        placeholder="First name">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="last-name" class="block text-sm font-medium mb-1">Last Name:</label>
+                                    <input type="text" id="last-name"
+                                        class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                        placeholder="Last name">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="user-description"
+                                        class="block text-sm font-medium mb-1">Description:</label>
+                                    <textarea id="user-description"
+                                        class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                        placeholder="Describe yourself"></textarea>
+                                </div>
+
+                                <!-- Save Button -->
+                                <div class="flex items-center justify-between">
+                                    <button
+                                        class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        type="button">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-900 dark:text-white">$70.00</p>
-                </div>
 
-                <!-- Second item -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_additional_item_image" alt="Additional Item">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Additional Item Name</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @secondusername</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on [Delivery Date]</p>
+                    <!-- Phone Number Field -->
+                    <div class="w-full px-3 mb-6 md:flex md:items-center">
+                        <div class="md:w-1/2">
+                            <label for="phone-number" class="block text-sm font-medium mb-1 md:mb-0">Phone
+                                Number:</label>
+                        </div>
+                        <div class="md:w-1/2 md:flex md:items-center md:justify-between">
+                            <input type="tel" id="phone-number" name="phone-number"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 md:mr-3 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Phone Number" value="123-456-7890" required>
+                            <button
+                                class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
+                                type="button">
+                                Save
+                            </button>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-900 dark:text-white">[Item Price]</p>
+
+                    <!-- Additional sections would go here -->
+                    <!-- Change Password Section -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
+                        <h2 class="text-xl mb-2">Change Password</h2>
+                        <form>
+                            <div class="mb-4">
+                                <label for="current-password" class="block text-sm font-medium mb-1">Current
+                                    Password:</label>
+                                <input type="password" id="current-password"
+                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="new-password" class="block text-sm font-medium mb-1">New Password:</label>
+                                <input type="password" id="new-password"
+                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="confirm-new-password" class="block text-sm font-medium mb-1">Confirm New
+                                    Password:</label>
+                                <input type="password" id="confirm-new-password"
+                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                    required>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit"
+                                    class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded-lg">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Account Deletion Section -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
+                        <h2 class="text-xl mb-2 text-black dark:text-white">Delete account</h2>
+                        <p class="text-gray-400 mb-4">No longer want to use our service? You can delete your account
+                            here. This action is not reversible. All information related to this account will be deleted
+                            permanently.</p>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+                            Yes, delete my account
+                        </button>
+                    </div>
+
+
+                </section>
+            </div>
+
+            <!-- Billing Info Section -->
+            <div id="billing-info" class="settings-content bg-white dark:bg-gray-800 p-6 rounded-lg"
+                style="display: none;">
+                <div class="w-full">
+                    <h2 class="text-xl mb-2 text-black dark:text-white">Billing Information</h2>
+                    <p class="mb-4">Manage your payment methods and billing addresses.</p>
+
+                    <!-- Payment Method -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <h3 class="text-lg text-black dark:text-white mb-3">Payment Method</h3>
+                        <!-- Clickable payment method -->
+                        <div class="mb-3">
+                            <div class="flex justify-between items-center">
+                                <div class="flex-grow">
+                                    <p class="mb-1">•••• •••• •••• 1234 - John Doe - 12/23</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-300">Billing Address: 123 Main St,
+                                        City, State, ZIP</p>
+                                </div>
+                                <div class="flex">
+                                    <button onclick="toggleEditPaymentMethodForm(1)"
+                                        class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded mr-1">Edit</button>
+                                    <button onclick="deletePaymentMethod(1)"
+                                        class="text-sm bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Payment Method Button -->
+                        <button onclick="toggleAddPaymentMethodForm()"
+                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Add
+                            Payment Method</button>
+                    </div>
+
+
+                    <!-- Add Payment Method Form -->
+                    <div id="add-payment-method-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg"
+                        style="display: none;">
+                        <form action="./php-scripts/set_payment.php" method="post">
+                            <label for="card-name" class="block text-sm font-medium mb-1">Cardholder's Name:</label>
+                            <input type="text" id="card-name" name="cardholder_name"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Cardholder's Name" required>
+
+                            <label for="card-number" class="block text-sm font-medium mb-1">Card Number:</label>
+                            <input type="text" id="card-number" name="card_number"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Card Number" required>
+
+                            <label for="card-expiry" class="block text-sm font-medium mb-1">Expiry Date:</label>
+                            <input type="text" id="card-expiry" name="expiration_date"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="MM/YY" required>
+
+                            <label for="card-cvv" class="block text-sm font-medium mb-1">CVV:</label>
+                            <input type="text" id="card-cvv" name="CVV"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="CVV" required>
+
+                            <label for="add-billing-address" class="block text-sm font-medium mb-1">Select an Address:</label>
+                            <select id="add-billing-address" name="address"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue">
+                                <option>Select an address</option>
+                                <!-- <option>123 Main St, City, State</option> -->
+                                <!-- Additional addresses -->
+
+                                <!-- Options will hopefully be populated by jQuery-->
+                            </select>
+                            <!-- Include jQuery -->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                            <!-- jQuery script to fetch addresses and populate the select box -->
+                            <script>
+                                $(document).ready(function () {
+                                    $.ajax({
+                                        url: './php-scripts/fetch_address.php', // Replace with the path to your PHP script
+                                        type: 'post',
+                                        success: function (response) {
+                                            var addresses = JSON.parse(response);
+                                            var selectBox = $('#add-billing-address');
+                                            for (var i = 0; i < addresses.length; i++) {
+                                                var option = new Option(addresses[i].street + ', ' + addresses[i].city + ', ' + addresses[i].state + ', ' + addresses[i].zip + ', ' + addresses[i].country, addresses[i].id);
+                                                $(selectBox).append($(option));
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
+                            <button type="submit"
+                                class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded-lg mt-4">
+                                Add Payment Method
+                            </button>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+
+                    <!-- Edit Payment Method Form (initially hidden) -->
+                    <div id="edit-payment-method-form" class="mt-4 dark:bg-gray-800 p-4 rounded-lg"
+                        style="display: none;">
+                        <div class="mb-4">
+                            <label for="card-name" class="block text-sm font-medium dark:text-white mb-1">Name on
+                                Card:</label>
+                            <input type="text" id="card-name"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Name on Card" value="John Doe">
+                        </div>
+                        <div class="mb-4">
+                            <label for="card-number" class="block text-sm font-medium dark:text-white mb-1">Card
+                                Number:</label>
+                            <input type="text" id="card-number"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Card Number" value="1234 5678 9012 3456">
+                        </div>
+                        <div class="mb-4">
+                            <label for="card-expiration"
+                                class="block text-sm font-medium dark:text-white mb-1">Expiration Date:</label>
+                            <input type="text" id="card-expiration"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="MM/YY" value="12/34">
+                        </div>
+                        <div class="mb-4">
+                            <label for="card-cvv" class="block text-sm font-medium dark:text-white mb-1">CVV:</label>
+                            <input type="text" id="card-cvv"
+                                class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="CVV" value="123">
+                        </div>
+
+                        <label for="edit-billing-address" class="block text-sm font-medium mb-1">Select an
+                            Address:</label>
+                        <select id="edit-billing-address"
+                            class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue">
+                            <option>Select an address</option>
+                            <option>123 Main St, City, State</option>
+                            <!-- Additional addresses -->
+                        </select>
+                        <button onclick="savePaymentMethod()"
+                            class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded">Save</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Second Order Block -->
-        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
-            <div class="px-4 py-8 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number AT4841546</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Dec 22, 2020</p>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $80.00</p>
-                
-                <!-- Item in the second order -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_nomad_shopping_tote_image" alt="Nomad Shopping Tote">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Nomad Shopping Tote</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @anotherusername</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Dec 30, 2020</p>
+            <!-- Addresses Section -->
+            <div id="addresses" class="settings-content bg-white dark:bg-gray-800 p-6 rounded-lg"
+                style="display: none;">
+                <div class="w-full">
+                    <h2 class="text-xl mb-2 text-black dark:text-white">Addresses</h2>
+                    <p class="mb-4">Manage your shipping and billing addresses.</p>
+
+                    <!-- List of Addresses -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <h3 class="text-lg text-black dark:text-white mb-3">Your Addresses</h3>
+                        <!-- Example Address -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <!-- Use PHP to dynamically display addresses -->
+                                    <p>John Doe</p>
+                                    <p>123 Main St, City, State, ZIP</p>
+                                </div>
+                                <div>
+                                    <button onclick="toggleEditAddressForm(1)"
+                                        class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Edit</button>
+                                    <button onclick="deleteAddress(1)"
+                                        class="text-sm bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
+                                </div>
+                            </div>
                         </div>
+                        <!-- Add Address Button -->
+                        <button onclick="toggleAddAddressForm()"
+                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Add
+                            Address</button>
                     </div>
-                    <p class="text-sm text-gray-900 dark:text-white">$40.00</p>
+
+                    <!-- Add Address Form -->
+                    <div id="add-address-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg"
+                        style="display: none;">
+                        <form action="./php-scripts/set_shipping_info.php" method="post">
+                            <label for="add-name" class="block text-sm font-medium mb-1">Name:</label>
+                            <input type="text" id="add-name" name="name"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Name" required>
+
+                            <label for="add-street" class="block text-sm font-medium mb-1">Street:</label>
+                            <input type="text" id="add-street" name="street"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Street" required>
+
+                            <label for="add-city" class="block text-sm font-medium mb-1">City:</label>
+                            <input type="text" id="add-city" name="city"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="City" required>
+
+                            <label for="add-state" class="block text-sm font-medium mb-1">State:</label>
+                            <input type="text" id="add-state" name="state"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="State" required>
+
+                            <label for="add-zip" class="block text-sm font-medium mb-1">ZIP Code:</label>
+                            <input type="text" id="add-zip" name="zip"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="ZIP" required>
+
+                            <label for="add-country" class="block text-sm font-medium mb-1">Country:</label>
+                            <input type="text" id="add-country" name="country"
+                                class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                placeholder="Country" required>
+
+                            <!-- Add more fields for state, zip, country, etc. -->
+
+                            <button type="submit"
+                                class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded-lg mt-4">
+                                Add Address
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Edit Address Form (initially hidden) -->
+                    <div id="edit-address-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg"
+                        style="display: none;">
+                        <form id="edit-address-form-data">
+
+                            <!-- Use PHP to dynamically grab address details -->
+                            <input type="hidden" id="edit-address-id">
+                            <label for="edit-name" class="block text-sm font-medium mb-1">Name:</label>
+                            <input type="text" id="edit-name"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <label for="edit-street" class="block text-sm font-medium mb-1">Street:</label>
+                            <input type="text" id="edit-street"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <label for="edit-city" class="block text-sm font-medium mb-1">City:</label>
+                            <input type="text" id="edit-city"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <label for="edit-state" class="block text-sm font-medium mb-1">State:</label>
+                            <input type="text" id="edit-state"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <label for="edit-zip" class="block text-sm font-medium mb-1">ZIP Code:</label>
+                            <input type="text" id="edit-zip"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <label for="edit-country" class="block text-sm font-medium mb-1">Country:</label>
+                            <input type="text" id="edit-country"
+                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                required>
+
+                            <!-- Additional fields for state, zip, country, etc. -->
+
+                            <button type="button" onclick="saveEditedAddress()"
+                                class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded-lg mt-4">
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+
                 </div>
             </div>
+
         </div>
     </div>
+
+    </div>
+    </div>
+    <script src="js-scripts/settings.js" type="text/JavaScript"></script>
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
+
 </body>
+
 </html>
