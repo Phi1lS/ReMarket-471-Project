@@ -1097,20 +1097,20 @@ select {
   height: 40px;
 }
 
-.h-full {
-  height: 100%;
-}
-
-.h-\[38px\] {
-  height: 38px;
-}
-
-.h-\[48px\] {
-  height: 48px;
+.h-\[60px\] {
+  height: 60px;
 }
 
 .h-\[80px\] {
   height: 80px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-\[72px\] {
+  height: 72px;
 }
 
 .min-h-full {
@@ -2191,6 +2191,10 @@ select {
     height: 15rem;
   }
 
+  .md\:h-\[100px\] {
+    height: 100px;
+  }
+
   .md\:h-\[35px\] {
     height: 35px;
   }
@@ -2199,8 +2203,12 @@ select {
     height: 50px;
   }
 
-  .md\:h-\[100px\] {
-    height: 100px;
+  .md\:h-\[75px\] {
+    height: 75px;
+  }
+
+  .md\:h-\[90px\] {
+    height: 90px;
   }
 
   .md\:w-1\/2 {
