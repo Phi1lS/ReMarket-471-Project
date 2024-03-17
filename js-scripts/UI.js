@@ -24,33 +24,37 @@ document.addEventListener('click', function (event) {
 
   // JavaScript for toggling the slide-over shopping cart
   document.addEventListener('DOMContentLoaded', function () {
-      const cartIcon = document.querySelector('.fa-shopping-cart'); // Replace with the correct selector for your cart icon
-      const shoppingCart = document.getElementById('shopping-cart');
-      const closeButton = shoppingCart.querySelector('button'); // Assuming there is only one button inside the slide-over for closing it
+    const cartIcon = document.querySelector('.fa-shopping-cart'); // Replace with the correct selector for your cart icon
+    const shoppingCart = document.getElementById('shopping-cart');
+    const closeButton = shoppingCart.querySelector('button'); // Adjust if there are multiple buttons
+    const body = document.body;
 
-      // Function to show the cart
-      function showCart() {
-          shoppingCart.classList.remove('hidden');
-      }
+    // Function to show the cart and disable body scroll
+    function showCart() {
+        shoppingCart.classList.remove('hidden');
+        body.style.overflow = 'hidden'; // Disable scrolling
+    }
 
-      // Function to hide the cart
-      function hideCart() {
-          shoppingCart.classList.add('hidden');
-      }
+    // Function to hide the cart and enable body scroll
+    function hideCart() {
+        shoppingCart.classList.add('hidden');
+        body.style.overflow = ''; // Re-enable scrolling
+    }
 
-      // Show cart when cart icon is clicked
-      cartIcon.addEventListener('click', showCart);
+    // Show cart when cart icon is clicked
+    cartIcon.addEventListener('click', showCart);
 
-      // Hide cart when close button is clicked
-      closeButton.addEventListener('click', hideCart);
+    // Hide cart when close button is clicked
+    closeButton.addEventListener('click', hideCart);
 
-      // Hide cart if clicked outside of the cart
-      window.addEventListener('click', function (event) {
-          if (!shoppingCart.contains(event.target) && event.target !== cartIcon) {
-              hideCart();
-          }
-      });
+    // Hide cart if clicked outside of the cart (optional)
+    window.addEventListener('click', function (event) {
+        if (!shoppingCart.contains(event.target) && event.target !== cartIcon) {
+            hideCart();
+        }
+    });
   });
+
   function toggleDropdown() {
       var dropdown = document.getElementById("user-menu");
       dropdown.classList.toggle("hidden");
