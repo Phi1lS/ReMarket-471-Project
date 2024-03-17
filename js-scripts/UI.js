@@ -132,7 +132,3 @@ window.addEventListener('scroll', function() {
     header.style.top = '0';
   }
 }, false);
-
-
-
-

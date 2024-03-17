@@ -28,9 +28,3 @@ nav a {
   .translate-down {
     transform: translateY(0); /* Show the header */
   }
-  
-  .logo {
-    width: 50%; /* or any other relative size */
-    height: auto; /* Maintain the aspect ratio */
-  }
-  

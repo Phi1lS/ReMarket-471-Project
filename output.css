@@ -1093,16 +1093,12 @@ select {
   height: 28px;
 }
 
-.h-\[32px\] {
-  height: 32px;
+.h-\[40px\] {
+  height: 40px;
 }
 
 .h-full {
   height: 100%;
-}
-
-.h-\[40px\] {
-  height: 40px;
 }
 
 .min-h-full {
@@ -1159,6 +1155,10 @@ select {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-full {
@@ -1440,6 +1440,11 @@ select {
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover {
@@ -2182,10 +2187,6 @@ select {
     height: 35px;
   }
 
-  .md\:h-\[40px\] {
-    height: 40px;
-  }
-
   .md\:h-\[50px\] {
     height: 50px;
   }
@@ -2200,6 +2201,10 @@ select {
 
   .md\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:grid-cols-3 {
