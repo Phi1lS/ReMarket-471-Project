@@ -3,12 +3,12 @@ session_start(); // Ensure session is started
 require 'pdo.php'; 
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header('Location: login.html');
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['id'];
 
 // Check if the file upload is set
 if (!isset($_FILES['profile_picture'])) {
@@ -47,10 +47,10 @@ $stmt = $pdo->prepare($query);
 // Execute the query with the binary content of the image
 if ($stmt->execute([$imageContent, $user_id])) {
     echo "Profile picture updated successfully.";
-    header('Location: ../account_page.php?success=true');
+    header('Location: ../settings.html?success=true');
 } else {
     echo "Error updating profile picture in the database.";
     //redirect back to the profile page or another appropriate page with an error message
-    
+    header('Location: ../settings.html')
 }
 ?>
