@@ -8,10 +8,18 @@ nav a {
   }  
 
   nav {
-    transition: top 0.3s;
+    transition: transform 0.3s ease;
   }
   
   .nav-hidden {
     top: -100%; /* Adjust this value based on your header's height */
+  }
+  
+  .translate-up {
+    transform: translateY(-100%); /* Hide the header */
+  }
+  
+  .translate-down {
+    transform: translateY(0); /* Show the header */
   }
   

@@ -91,3 +91,26 @@ window.addEventListener('scroll', () => {
     ticking = true;
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  let lastScrollTop = 0;
+  const header = document.querySelector('nav'); // Adjust this if your header has a different selector
+  const breakpoint = 768; // Define mobile device width
+
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (window.innerWidth <= breakpoint) {
+      if (scrollTop > lastScrollTop) {
+        // Scroll Down
+        header.classList.add("translate-up");
+        header.classList.remove("translate-down");
+      } else {
+        // Scroll Up
+        header.classList.add("translate-down");
+        header.classList.remove("translate-up");
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    }
+  }, false);
+});
