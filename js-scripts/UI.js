@@ -68,26 +68,26 @@ document.addEventListener('click', function (event) {
 const header = document.querySelector('nav');
 
 let lastScrollY = window.scrollY;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
+function handleScroll() {
   const header = document.querySelector('nav');
 
-  if (lastScrollY < window.scrollY) {
-    header.classList.add('hidden'); // Hide header when scrolling down
-  } else {
-    header.classList.remove('hidden'); // Show header when scrolling up
+  if (window.innerWidth <= 768) { // Adjust 768px according to your needs
+    if (lastScrollY < window.scrollY) {
+      header.classList.add('nav-hidden');
+    } else {
+      header.classList.remove('nav-hidden');
+    }
   }
 
   lastScrollY = window.scrollY;
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(handleScroll);
+    ticking = true;
+  }
 });
-
-
-// Function to prevent double-tap zoom
-function preventDoubleTapZoom(event) {
-if (event.touches.length > 1) {
-  event.preventDefault();
-}
-}
-
-// Add event listener to the header
-header.addEventListener('touchstart', preventDoubleTapZoom, { passive: false });
