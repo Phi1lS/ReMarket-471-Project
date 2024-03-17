@@ -67,6 +67,21 @@ document.addEventListener('click', function (event) {
   // Select the header element
 const header = document.querySelector('nav');
 
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('nav');
+
+  if (lastScrollY < window.scrollY) {
+    header.classList.add('hidden'); // Hide header when scrolling down
+  } else {
+    header.classList.remove('hidden'); // Show header when scrolling up
+  }
+
+  lastScrollY = window.scrollY;
+});
+
+
 // Function to prevent double-tap zoom
 function preventDoubleTapZoom(event) {
 if (event.touches.length > 1) {
