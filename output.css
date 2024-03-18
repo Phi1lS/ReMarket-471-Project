@@ -1089,6 +1089,10 @@ select {
   height: 15rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .h-7 {
   height: 1.75rem;
 }
@@ -1099,6 +1103,10 @@ select {
 
 .h-\[28px\] {
   height: 28px;
+}
+
+.h-\[36px\] {
+  height: 36px;
 }
 
 .h-\[40px\] {
@@ -1794,6 +1802,10 @@ select {
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .placeholder-gray-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
@@ -2031,6 +2043,11 @@ select {
 .hover\:text-remarket-blue:hover {
   --tw-text-opacity: 1;
   color: rgb(88 164 176 / var(--tw-text-opacity));
+}
+
+.hover\:text-remarket-dark:hover {
+  --tw-text-opacity: 1;
+  color: rgb(55 63 81 / var(--tw-text-opacity));
 }
 
 .hover\:text-remarket-teal-700:hover {
@@ -2274,6 +2291,10 @@ select {
 
   .md\:h-\[35px\] {
     height: 35px;
+  }
+
+  .md\:h-\[45px\] {
+    height: 45px;
   }
 
   .md\:h-\[50px\] {
