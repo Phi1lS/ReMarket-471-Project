@@ -51,6 +51,6 @@ if ($stmt->execute([$imageContent, $user_id])) {
 } else {
     echo "Error updating profile picture in the database.";
     //redirect back to the profile page or another appropriate page with an error message
-    header('Location: ../settings.html')
+    header('Location: ../settings.html');
 }
 ?>
