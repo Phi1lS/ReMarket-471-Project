@@ -1,56 +1,76 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Toggle for profile dropdown
   const userMenuButton = document.querySelector('#user-menu-button');
   const userMenu = document.querySelector('#user-menu');
-
-  userMenuButton.addEventListener('click', function () {
-    userMenu.classList.toggle('hidden');
-  });
-
-  // Toggle for mobile menu
   const mobileMenuButton = document.querySelector('#mobile-menu-button');
   const mobileMenu = document.querySelector('#mobile-menu');
 
-  mobileMenuButton.addEventListener('click', function () {
-    mobileMenu.classList.toggle('hidden');
-  });
-});
+  // Ensure that the user menu button and the user menu exist
+  if (userMenuButton && userMenu) {
+    // Toggle user menu on button click
+    userMenuButton.addEventListener('click', function (event) {
+      userMenu.classList.toggle('hidden');
+      // Stop the click from propagating to the document
+      event.stopPropagation();
+    });
+  }
 
-document.addEventListener('click', function (event) {
-  if (!userMenu.contains(event.target) && !userMenuButton.contains(event.target)) {
-    userMenu.classList.add('hidden');
+  // Toggle mobile menu
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  // Close the user menu when clicking outside
+  document.addEventListener('click', function (event) {
+    // If the click is outside the userMenu and not on the userMenuButton, hide the userMenu
+    if (userMenu && !userMenu.contains(event.target) && !userMenuButton.contains(event.target)) {
+      userMenu.classList.add('hidden');
+    }
+  });
+
+  // Prevent menu from closing when clicking inside
+  if (userMenu) {
+    userMenu.addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
   }
 });
 
+
   // JavaScript for toggling the slide-over shopping cart
   document.addEventListener('DOMContentLoaded', function () {
-      const cartIcon = document.querySelector('.fa-shopping-cart'); // Replace with the correct selector for your cart icon
-      const shoppingCart = document.getElementById('shopping-cart');
-      const closeButton = shoppingCart.querySelector('button'); // Assuming there is only one button inside the slide-over for closing it
+    const cartIcon = document.querySelector('.fa-shopping-cart'); // Replace with the correct selector for your cart icon
+    const shoppingCart = document.getElementById('shopping-cart');
+    const closeButton = shoppingCart.querySelector('button'); // Adjust if there are multiple buttons
+    const body = document.body;
 
-      // Function to show the cart
-      function showCart() {
-          shoppingCart.classList.remove('hidden');
-      }
+    // Function to show the cart and disable body scroll
+    function showCart() {
+        shoppingCart.classList.remove('hidden');
+        body.style.overflow = 'hidden'; // Disable scrolling
+    }
 
-      // Function to hide the cart
-      function hideCart() {
-          shoppingCart.classList.add('hidden');
-      }
+    // Function to hide the cart and enable body scroll
+    function hideCart() {
+        shoppingCart.classList.add('hidden');
+        body.style.overflow = ''; // Re-enable scrolling
+    }
 
-      // Show cart when cart icon is clicked
-      cartIcon.addEventListener('click', showCart);
+    // Show cart when cart icon is clicked
+    cartIcon.addEventListener('click', showCart);
 
-      // Hide cart when close button is clicked
-      closeButton.addEventListener('click', hideCart);
+    // Hide cart when close button is clicked
+    closeButton.addEventListener('click', hideCart);
 
-      // Hide cart if clicked outside of the cart
-      window.addEventListener('click', function (event) {
-          if (!shoppingCart.contains(event.target) && event.target !== cartIcon) {
-              hideCart();
-          }
-      });
+    // Hide cart if clicked outside of the cart (optional)
+    window.addEventListener('click', function (event) {
+        if (!shoppingCart.contains(event.target) && event.target !== cartIcon) {
+            hideCart();
+        }
+    });
   });
+
   function toggleDropdown() {
       var dropdown = document.getElementById("user-menu");
       dropdown.classList.toggle("hidden");
@@ -128,7 +148,3 @@ window.addEventListener('scroll', function() {
     header.style.top = '0';
   }
 }, false);
-
-
-
-
