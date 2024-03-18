@@ -12,6 +12,8 @@ CREATE TABLE `user` (
   `phone` int NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(120) NOT NULL,
+  `profile_pic` MEDIUMBLOB,
+  `description` varchar(1000),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

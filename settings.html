@@ -235,11 +235,12 @@
                                     <img class="w-24 h-24 rounded-full" src="path_to_avatar_image" alt="Avatar"
                                         id="avatar-image">
                                     <div class="ml-4">
-                                        <label for="avatar-upload" class="text-sm font-semibold cursor-pointer">Change
-                                            Your Profile Picture</label>
-                                        <input type="file" id="avatar-upload" class="hidden" accept="image/*"
-                                            onchange="previewAvatar()">
-                                        <p class="text-xs">JPG, GIF, or PNG. 1MB max.</p>
+                                        <form action="./php-scripts/upload_profile_pic.php" method="post" enctype="multipart/form-data">
+                                            <label for="avatar-upload" class="text-sm font-semibold cursor-pointer">Change Your Profile Picture</label>
+                                            <input type="file" id="avatar-upload" name="profile_picture" class="hidden" accept="image/*" onchange="previewAvatar()">
+                                            <p class="text-xs">JPG, GIF, or PNG. 1MB max.</p>
+                                            <input type="submit" value="Upload Image" name="submit">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
