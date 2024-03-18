@@ -1105,10 +1105,6 @@ select {
   height: 28px;
 }
 
-.h-\[36px\] {
-  height: 36px;
-}
-
 .h-\[40px\] {
   height: 40px;
 }
@@ -2291,10 +2287,6 @@ select {
 
   .md\:h-\[35px\] {
     height: 35px;
-  }
-
-  .md\:h-\[45px\] {
-    height: 45px;
   }
 
   .md\:h-\[50px\] {
