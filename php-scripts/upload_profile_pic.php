@@ -3,12 +3,12 @@ session_start(); // Ensure session is started
 require 'pdo.php'; 
 
 // Check if user is logged in
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.html');
     exit();
 }
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // Check if the file upload is set
 if (!isset($_FILES['profile_picture'])) {
