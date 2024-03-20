@@ -333,13 +333,15 @@
 
                     <!-- Account Deletion Section -->
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
-                        <h2 class="text-xl mb-2 text-black dark:text-white">Delete account</h2>
-                        <p class="text-gray-400 mb-4">No longer want to use our service? You can delete your account
-                            here. This action is not reversible. All information related to this account will be deleted
-                            permanently.</p>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
-                            Yes, delete my account
-                        </button>
+                        <form action="./php-scripts/delete_account.php" method="post">
+                            <h2 class="text-xl mb-2 text-black dark:text-white">Delete account</h2>
+                            <p class="text-gray-400 mb-4">No longer want to use our service? You can delete your account
+                                here. This action is not reversible. All information related to this account will be deleted
+                                permanently.</p>
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+                                Yes, delete my account
+                            </button>
+                        </form>
                     </div>
 
 
