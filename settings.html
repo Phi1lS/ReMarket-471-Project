@@ -542,26 +542,50 @@
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
                         <h3 class="text-lg text-black dark:text-white mb-3">Your Addresses</h3>
                         <!-- Example Address -->
-                        <div class="mb-4">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <!-- Use PHP to dynamically display addresses -->
-                                    <p>John Doe</p>
-                                    <p>123 Main St, City, State, ZIP</p>
-                                </div>
-                                <div>
-                                    <button onclick="toggleEditAddressForm(1)"
-                                        class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Edit</button>
-                                    <button onclick="deleteAddress(1)"
-                                        class="text-sm bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
-                                </div>
-                            </div>
+                        <div class="mb-4" id="addressContainer">
+                            <!-- Addresses will be loaded here -->
                         </div>
                         <!-- Add Address Button -->
-                        <button onclick="toggleAddAddressForm()"
-                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Add
-                            Address</button>
+                        <button id="addAddress" onclick="toggleAddAddressForm()"
+                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded"
+                            enabled>Add Address
+                        </button>
+
                     </div>
+
+                    <!-- Include jQuery -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                    <!-- jQuery script to fetch and display addresses -->
+                    <script>
+                        $(document).ready(function () {
+                            $.ajax({
+                                url: './php-scripts/fetch_address_page.php',
+                                type: 'GET',
+                                success: function (data) {
+                                    var addresses = JSON.parse(data);
+                                    if (addresses.length > 0) {
+                                        document.getElementById('addAddress').disabled = true;
+                                    }
+                                    var formattedAddresses = '';
+                                    for (var i = 0; i < addresses.length; i++) {
+                                        formattedAddresses += '<p><strong>Name:</strong> ' + addresses[i].name + '</p>';
+                                        formattedAddresses += '<p><strong>Street:</strong> ' + addresses[i].street + '</p>';
+                                        formattedAddresses += '<p><strong>City:</strong> ' + addresses[i].city + '</p>';
+                                        formattedAddresses += '<p><strong>State:</strong> ' + addresses[i].state + '</p>';
+                                        formattedAddresses += '<p><strong>Zip:</strong> ' + addresses[i].zip + '</p>';
+                                        formattedAddresses += '<p><strong>Country:</strong> ' + addresses[i].country + '</p>';
+                                        formattedAddresses += '<hr>';
+                                    }
+                                    $('#addressContainer').html(formattedAddresses);
+                                },
+                                error: function () {
+                                    console.log('Error fetching data');
+                                }
+                            });
+                        });
+
+                    </script>
 
                     <!-- Add Address Form -->
                     <div id="add-address-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg"
@@ -663,7 +687,7 @@
     </div>
     <script src="js-scripts/settings.js" type="text/JavaScript"></script>
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
-    
+
 </body>
 <!-- Footer -->
 <footer class="bg-gray-200 dark:bg-gray-800 mt-12">
