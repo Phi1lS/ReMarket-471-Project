@@ -62,6 +62,7 @@
                         class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
                     <a href="settings.html"
                         class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+
                     <form method="POST" action="./php-scripts/user_signup.php">
                         <button type="submit"
                             class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
@@ -90,6 +91,7 @@
             </div>
         </div>
     </nav>
+
     <div class="h-[28px] md:h-[35px]"></div>
 
 
@@ -100,6 +102,7 @@
         <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
             <!--
+
               Background backdrop, show/hide based on slide-over state.
           
               Entering: "ease-in-out duration-500"
@@ -115,6 +118,7 @@
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                         <!--
+
                     Slide-over panel, show/hide based on slide-over state.
           
                     Entering: "transform transition ease-in-out duration-500 sm:duration-700"
@@ -555,26 +559,50 @@
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
                         <h3 class="text-lg text-black dark:text-white mb-3">Your Addresses</h3>
                         <!-- Example Address -->
-                        <div class="mb-4">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <!-- Use PHP to dynamically display addresses -->
-                                    <p>John Doe</p>
-                                    <p>123 Main St, City, State, ZIP</p>
-                                </div>
-                                <div>
-                                    <button onclick="toggleEditAddressForm(1)"
-                                        class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Edit</button>
-                                    <button onclick="deleteAddress(1)"
-                                        class="text-sm bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
-                                </div>
-                            </div>
+                        <div class="mb-4" id="addressContainer">
+                            <!-- Addresses will be loaded here -->
                         </div>
                         <!-- Add Address Button -->
-                        <button onclick="toggleAddAddressForm()"
-                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Add
-                            Address</button>
+                        <button id="addAddress" onclick="toggleAddAddressForm()"
+                            class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded"
+                            enabled>Add Address
+                        </button>
+
                     </div>
+
+                    <!-- Include jQuery -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                    <!-- jQuery script to fetch and display addresses -->
+                    <script>
+                        $(document).ready(function () {
+                            $.ajax({
+                                url: './php-scripts/fetch_address_page.php',
+                                type: 'GET',
+                                success: function (data) {
+                                    var addresses = JSON.parse(data);
+                                    if (addresses.length > 0) {
+                                        document.getElementById('addAddress').disabled = true;
+                                    }
+                                    var formattedAddresses = '';
+                                    for (var i = 0; i < addresses.length; i++) {
+                                        formattedAddresses += '<p><strong>Name:</strong> ' + addresses[i].name + '</p>';
+                                        formattedAddresses += '<p><strong>Street:</strong> ' + addresses[i].street + '</p>';
+                                        formattedAddresses += '<p><strong>City:</strong> ' + addresses[i].city + '</p>';
+                                        formattedAddresses += '<p><strong>State:</strong> ' + addresses[i].state + '</p>';
+                                        formattedAddresses += '<p><strong>Zip:</strong> ' + addresses[i].zip + '</p>';
+                                        formattedAddresses += '<p><strong>Country:</strong> ' + addresses[i].country + '</p>';
+                                        formattedAddresses += '<hr>';
+                                    }
+                                    $('#addressContainer').html(formattedAddresses);
+                                },
+                                error: function () {
+                                    console.log('Error fetching data');
+                                }
+                            });
+                        });
+
+                    </script>
 
                     <!-- Add Address Form -->
                     <div id="add-address-form" class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg"
@@ -709,6 +737,7 @@
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
             <div class="xl:col-span-1">
+
                 <img class="h-20" src="./logo/ReMarket-TypeLogo.png" alt="ReMarket Logo">
                 <p class="mt-8 text-gray-500 dark:text-gray-400">2024 ReMarket, Inc.</p>
             </div>
