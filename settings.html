@@ -47,10 +47,10 @@
             </div>
 
             <div class="relative">
-                <button id="user-menu-button"
+                <button onclick="toggleDropdown()"
                     class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
-                    <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg"
-                        alt="Your profile">
+                    <img id="profile-picture1" class="h-full w-full object-cover"
+                        src="other-images/default_profile_pic.jpg" alt="Your profile">
                 </button>
                 <div id="user-menu"
                     class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden"
@@ -62,7 +62,8 @@
                         class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
                     <a href="settings.html"
                         class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
-                    <form method="POST" action="./php-scripts/logout.php">
+
+                    <form method="POST" action="./php-scripts/user_signup.php">
                         <button type="submit"
                             class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
                     </form>
@@ -90,7 +91,8 @@
             </div>
         </div>
     </nav>
-    <div class="h-[40px] md:h-[50px]"></div>
+
+    <div class="h-[28px] md:h-[35px]"></div>
 
 
     <!-- Slide-over menu for Shopping Cart -->
@@ -100,30 +102,32 @@
         <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
             <!--
-            Background backdrop, show/hide based on slide-over state.
-        
-            Entering: "ease-in-out duration-500"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in-out duration-500"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
+
+              Background backdrop, show/hide based on slide-over state.
+          
+              Entering: "ease-in-out duration-500"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-500"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
             <div class="fixed inset-0 overflow-hidden">
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                         <!--
-                  Slide-over panel, show/hide based on slide-over state.
-        
-                  Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-full"
-                    To: "translate-x-0"
-                  Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-0"
-                    To: "translate-x-full"
-                -->
+
+                    Slide-over panel, show/hide based on slide-over state.
+          
+                    Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-full"
+                      To: "translate-x-0"
+                    Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                      From: "translate-x-0"
+                      To: "translate-x-full"
+                  -->
                         <div class="pointer-events-auto w-screen max-w-md">
                             <div
                                 class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-remarket-dark">
@@ -290,80 +294,89 @@
                             </div>
 
                             <!-- Right column for the form -->
-                            <div class="w-full md:w-2/3 px-3">
-                                <div class="mb-4">
-                                    <label for="first-name" class="block text-sm font-medium mb-1">First Name:</label>
-                                    <input type="text" id="first-name"
-                                        class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
-                                        placeholder="First name">
-                                </div>
-                                <div class="mb-4">
-                                    <label for="last-name" class="block text-sm font-medium mb-1">Last Name:</label>
-                                    <input type="text" id="last-name"
-                                        class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
-                                        placeholder="Last name">
-                                </div>
-                                <div class="mb-4">
-                                    <label for="user-description"
-                                        class="block text-sm font-medium mb-1">Description:</label>
-                                    <textarea id="user-description"
-                                        class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
-                                        placeholder="Describe yourself"></textarea>
-                                </div>
+                            <form action="./php-scripts/update_name_and_desc.php" method="post"
+                                class="w-full md:w-3/3 px-3">
+                                <div class="w-full md:w-2/3 px-3">
+                                    <div class="mb-4">
+                                        <label for="first-name" class="block text-sm font-medium mb-1">First
+                                            Name:</label>
+                                        <input type="text" name="fname" id="fname"
+                                            class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                            placeholder="First name">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="last-name" class="block text-sm font-medium mb-1">Last Name:</label>
+                                        <input type="text" name="lname" id="lname"
+                                            class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                            placeholder="Last name">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="user-description"
+                                            class="block text-sm font-medium mb-1">Description:</label>
+                                        <textarea type="text" name="description" id="description"
+                                            class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                            placeholder="Describe yourself"></textarea>
+                                    </div>
 
-                                <!-- Save Button -->
-                                <div class="flex items-center justify-between">
-                                    <button
-                                        class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                        type="button">
-                                        Save
-                                    </button>
+                                    <!-- Save Button -->
+                                    <div class="flex items-center justify-between">
+                                        <button
+                                            class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                            type="submit">
+                                            Save
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
 
                     <!-- Phone Number Field -->
-                    <div class="w-full px-3 mb-6 md:flex md:items-center">
-                        <div class="md:w-1/2">
-                            <label for="phone-number" class="block text-sm font-medium mb-1 md:mb-0">Phone
-                                Number:</label>
+                    <form action="./php-scripts/update_number.php" method="post" class="w-full md:w-full px-3">
+                        <div class="w-full px-3 mb-6 md:flex md:items-center">
+                            <div class="md:w-1/2">
+                                <label for="phone-number" class="block text-sm font-medium mb-1 md:mb-0">Phone
+                                    Number:</label>
+                            </div>
+                            <div class="md:w-1/2 md:flex md:items-center md:justify-between">
+                                <input type="tel" id="phone-number" name="phone"
+                                    class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full md:w-auto md:mr-3 p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                    placeholder="Phone Number" value="123-456-7890" required>
+                                <button
+                                    class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
+                                    type="submit">
+                                    Save
+                                </button>
+                            </div>
                         </div>
-                        <div class="md:w-1/2 md:flex md:items-center md:justify-between">
-                            <input type="tel" id="phone-number" name="phone-number"
-                                class="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-lg shadow-sm w-full p-2 md:mr-3 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
-                                placeholder="Phone Number" value="123-456-7890" required>
-                            <button
-                                class="bg-remarket-blue hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
-                                type="button">
-                                Save
-                            </button>
-                        </div>
-                    </div>
+                    </form>
+
 
                     <!-- Additional sections would go here -->
                     <!-- Change Password Section -->
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
                         <h2 class="text-xl mb-2">Change Password</h2>
-                        <form>
+                        <form action="./php-scripts/update_password.php" method="post" class="w-full md:w-full px-3">
                             <div class="mb-4">
                                 <label for="current-password" class="block text-sm font-medium mb-1">Current
                                     Password:</label>
-                                <input type="password" id="current-password"
-                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                <input type="password" name="password" id="current-password"
+                                    class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
                                     required>
                             </div>
                             <div class="mb-4">
-                                <label for="new-password" class="block text-sm font-medium mb-1">New Password:</label>
-                                <input type="password" id="new-password"
-                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                <label for="new-password" class="block text-sm font-medium mb-1">New
+                                    Password:</label>
+                                <input type="password" name="newPassword" id="new-password"
+                                    class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
                                     required>
                             </div>
                             <div class="mb-4">
                                 <label for="confirm-new-password" class="block text-sm font-medium mb-1">Confirm New
                                     Password:</label>
-                                <input type="password" id="confirm-new-password"
-                                    class="bg-gray-100 dark:bg-gray-700 text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
+                                <input type="password" name="newPasswordConfirm" id="confirm-new-password"
+                                    class="bg-gray-100 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"
                                     required>
                             </div>
                             <div class="flex justify-end">
@@ -377,13 +390,17 @@
 
                     <!-- Account Deletion Section -->
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-4">
-                        <h2 class="text-xl mb-2 text-black dark:text-white">Delete account</h2>
-                        <p class="text-gray-400 mb-4">No longer want to use our service? You can delete your account
-                            here. This action is not reversible. All information related to this account will be deleted
-                            permanently.</p>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
-                            Yes, delete my account
-                        </button>
+                        <form action="./php-scripts/delete_account.php" method="post">
+                            <h2 class="text-xl mb-2 text-black dark:text-white">Delete account</h2>
+                            <p class="text-gray-400 mb-4">No longer want to use our service? You can delete your account
+                                here. This action is not reversible. All information related to this account will be
+                                deleted
+                                permanently.</p>
+                            <button type="submit"
+                                class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+                                Yes, delete my account
+                            </button>
+                        </form>
                     </div>
 
 
@@ -687,6 +704,32 @@
     </div>
     <script src="js-scripts/settings.js" type="text/JavaScript"></script>
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Make AJAX request to fetch user info
+            $.ajax({
+                url: './php-scripts/fetch_user_info.php', // Replace with the path to your PHP script
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (!data.error) {
+                        // Assuming 'profile_pic' is now a Base64-encoded string
+                        if (data.profile_pic) {
+                            var imgSrc = 'data:image/jpeg;base64,' + data.profile_pic;
+                            $('#profile-picture').attr('src', imgSrc);
+                            $('#profile-picture1').attr('src', imgSrc)
+                        }
+                        $('#user-name').text(data.fname + ' ' + data.lname);
+                        $('#user-description').text(data.description);
+                    } else {
+                        console.error(data.error);
+                        // Handle error
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 <!-- Footer -->
@@ -694,7 +737,8 @@
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
             <div class="xl:col-span-1">
-                <img class="h-10" src="./logo/ReMarket-TypeLogo.png" alt="ReMarket Logo">
+
+                <img class="h-20" src="./logo/ReMarket-TypeLogo.png" alt="ReMarket Logo">
                 <p class="mt-8 text-gray-500 dark:text-gray-400">2024 ReMarket, Inc.</p>
             </div>
             <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">

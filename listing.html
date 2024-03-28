@@ -52,18 +52,18 @@
           </div>
 
           <div class="relative">
-            <button id="user-menu-button" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
-              <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
-          </button>          
-              <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
-                  <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
-                  <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
-                  <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
-                  <form method="POST" action="./php-scripts/logout.php">
-                      <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
-                  </form>
-              </div>
-          </div>
+    <button onclick="toggleDropdown()" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
+        <img id="profile-picture1" class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
+    </button>
+    <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
+        <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
+        <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
+        <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+        <form method="POST" action="./php-scripts/user_signup.php">
+            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
+        </form>
+    </div>
+</div>
           
       </div>
 
@@ -82,7 +82,7 @@
           </div>
       </div>
   </nav>
-  <div class="h-[80px] md:h-[100px]"></div>
+  <div class="h-[28px] md:h-[35px]"></div>
 
 
   <!-- Slide-over menu for Shopping Cart -->
@@ -230,23 +230,12 @@
             </li>
             </ol>
         </nav>
-    
+
         <!-- Image gallery -->
-        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-            <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
-            </div>
-            <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-            <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="Model wearing plain black basic tee." class="h-full w-full object-cover object-center">
-            </div>
-            <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="Model wearing plain gray basic tee." class="h-full w-full object-cover object-center">
-            </div>
-            </div>
-            <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
-            </div>
+        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+          <div class="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:max-w-7xl">
+              <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" class="h-full w-full object-cover object-center">
+          </div>
         </div>
     
         <!-- Product info -->
@@ -288,7 +277,7 @@
             </div>
     
             <form class="mt-10">
-                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-remarket-blue hover:bg-remarket-teal-700 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-remarket-teal-500 focus:ring-offset-2">Add to bag</button>
+                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-remarket-blue hover:bg-remarket-teal-700 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-remarket-teal-500 focus:ring-offset-2">Add to cart</button>
             </form>
             </div>
     
@@ -307,7 +296,7 @@
         <div class="mt-4 lg:mt-0 lg:col-span-3">
           <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sold by:</h3>
           <p class="text-md text-gray-700 dark:text-gray-300">
-              <a href="account_page.html" class="text-remarket-blue hover:text-remarket-teal-700">John Doe's Store</a>
+              <a href="account_page.html" class="text-remarket-blue hover:text-remarket-teal-700">John Doe</a>
           </p>
         </div>
 
@@ -316,6 +305,33 @@
     </div>
 
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
+    <script src="js/account.js" type="text/JavaScript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Make AJAX request to fetch user info
+            $.ajax({
+              url: './php-scripts/fetch_user_info.php', // Replace with the path to your PHP script
+              type: 'post',
+              dataType: 'json',
+              success: function(data) {
+                if (!data.error) {
+                    // Assuming 'profile_pic' is now a Base64-encoded string
+                    if (data.profile_pic) {
+                        var imgSrc = 'data:image/jpeg;base64,' + data.profile_pic;
+                        $('#profile-picture').attr('src', imgSrc);
+                        $('#profile-picture1').attr('src', imgSrc)
+                    }
+                    $('#user-name').text(data.fname + ' ' + data.lname);
+                    $('#user-description').text(data.description);
+                } else {
+                    console.error(data.error);
+                    // Handle error
+                }
+              }
+          });
+        });
+    </script>
 </body>
 
 <!-- Footer -->

@@ -957,6 +957,10 @@ select {
   margin-bottom: 0.25rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1117,8 +1121,8 @@ select {
   height: 40px;
 }
 
-.h-\[44px\] {
-  height: 44px;
+.h-\[60px\] {
+  height: 60px;
 }
 
 .h-\[72px\] {
@@ -2327,8 +2331,8 @@ select {
     height: 50px;
   }
 
-  .md\:h-\[55px\] {
-    height: 55px;
+  .md\:h-\[75px\] {
+    height: 75px;
   }
 
   .md\:h-\[90px\] {

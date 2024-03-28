@@ -123,7 +123,7 @@ window.addEventListener('scroll', function() {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
   // Check for mobile view
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 768 || window.innerHeight <= 768) {
     // Always show the header when at the top of the page
     if (scrollTop <= 0) {
       header.style.top = '0'; // Show the header

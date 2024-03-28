@@ -13,7 +13,7 @@
     <link rel="manifest" href="site.webmanifest">
 </head>
 <body class="h-full bg-gray-100 dark:bg-gray-900 dark:caret-white">
-    <!-- Header -->
+    <<!-- Header -->
     <nav class="fixed top-0 z-50 w-full bg-remarket-blue p-4 dark:bg-remarket-dark flex items-center justify-between">
       <a href="index.html" class="flex items-center mr-4 md:mr-6">
         <img src="./logo/ReMarketlogo.png" alt="ReMarket Logo" class="h-20 md:h-24 -my-4 md:-my-6 object-contain">
@@ -43,18 +43,18 @@
           </div>
 
           <div class="relative">
-            <button id="user-menu-button" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
-              <img class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
-          </button>          
-              <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
-                  <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
-                  <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
-                  <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
-                  <form method="POST" action="./php-scripts/logout.php">
-                      <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
-                  </form>
-              </div>
-          </div>
+    <button onclick="toggleDropdown()" class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white">
+        <img id="profile-picture1" class="h-full w-full object-cover" src="other-images/default_profile_pic.jpg" alt="Your profile">
+    </button>
+    <div id="user-menu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" style="z-index: 50;">
+        <a href="account_page.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Account Page</a>
+        <a href="purchases.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Purchases</a>
+        <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+        <form method="POST" action="./php-scripts/user_signup.php">
+            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
+        </form>
+    </div>
+</div>
           
       </div>
 
@@ -275,6 +275,33 @@
         </div>
     </div>
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
+    <script src="js/account.js" type="text/JavaScript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Make AJAX request to fetch user info
+            $.ajax({
+              url: './php-scripts/fetch_user_info.php', // Replace with the path to your PHP script
+              type: 'post',
+              dataType: 'json',
+              success: function(data) {
+                if (!data.error) {
+                    // Assuming 'profile_pic' is now a Base64-encoded string
+                    if (data.profile_pic) {
+                        var imgSrc = 'data:image/jpeg;base64,' + data.profile_pic;
+                        $('#profile-picture').attr('src', imgSrc);
+                        $('#profile-picture1').attr('src', imgSrc)
+                    }
+                    $('#user-name').text(data.fname + ' ' + data.lname);
+                    $('#user-description').text(data.description);
+                } else {
+                    console.error(data.error);
+                    // Handle error
+                }
+              }
+          });
+        });
+    </script>
 </body>
 
 <!-- Footer -->
@@ -282,7 +309,7 @@
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="xl:col-span-1">
-        <img class="h-10" src="./logo/ReMarket-TypeLogo.png" alt="ReMarket Logo">
+        <img class="h-20" src="./logo/ReMarket-TypeLogo.png" alt="ReMarket Logo">
         <p class="mt-8 text-gray-500 dark:text-gray-400">2024 ReMarket, Inc.</p>
       </div>
       <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
