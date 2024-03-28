@@ -450,7 +450,7 @@ video {
           appearance: none;
   background-color: #fff;
   border-color: #6b7280;
-  border-width: 1px;
+  border-width: 0px;
   border-radius: 0px;
   padding-top: 0.5rem;
   padding-right: 0.75rem;
@@ -462,16 +462,18 @@ video {
 }
 
 [type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+  /* outline: 2px solid transparent;
+  outline-offset: 2px; */
+  outline: none;
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: #2563eb;
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  border-color: #2563eb;
+  /* box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow); */
+  box-shadow: none;
+  /* border-color: #2563eb; */
 }
 
 input::-moz-placeholder, textarea::-moz-placeholder {
@@ -974,6 +976,7 @@ select {
 }
 
 .mb-6 {
+  margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -1669,7 +1672,7 @@ select {
 
 .text-2xl {
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
 }
 
 .text-3xl {
@@ -1717,7 +1720,7 @@ select {
 }
 
 .font-extrabold {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .font-medium {
