@@ -6,7 +6,7 @@ session_start(); // Ensure session is started
 require 'pdo.php'; 
 
 // Get user_id from session:
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['id'];
 
 // Check if fields in HTML have been set:
 if (isset($_POST['fname'], $_POST['lname'], $_POST['description'])) {

@@ -29,7 +29,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
     $user_id = $pdo->lastInsertId();
 
     // Store the user ID in the session:
-    $_SESSION['user_id'] = $user_id;
+    $_SESSION['id'] = $user_id;
 
     // Insert the user ID into the 'active_users' table:
     $sql_active_users = "INSERT INTO active_users (user_id) VALUES (:user_id)";
@@ -43,8 +43,8 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
 }
 
 // Check if the user is logged in and has the privilege to delete users (this check could be more sophisticated):
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
+    if (isset($_SESSION['id'])) {
+        $user_id = $_SESSION['id'];
     
         // Write the SQL query to delete the user from the database:
         $sql = "DELETE FROM active_users WHERE user_id = :user_id";
