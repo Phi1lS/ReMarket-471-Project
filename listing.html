@@ -251,19 +251,19 @@
   <!-- END HEADER -->
 
   <div class="container mx-auto px-4 py-12 lg:px-8 lg:py-16">
-    <div class="lg:grid lg:grid-cols-12 gap-6 items-center justify-center">
+    <div class="lg:grid lg:grid-cols-12 gap-6 items-center">
         <!-- Left Column for Image -->
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 flex justify-center">
             <img id="item-image" src="" alt="Item Image" class="max-w-full h-auto rounded-lg shadow-lg">
         </div>
 
         <!-- Right Column for Details -->
-        <div class="lg:col-span-7 mt-4 lg:mt-0">
-            <h1 id="item-name" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">Item Name</h1>
-            <p id="item-price" class="text-3xl tracking-tight text-gray-900 dark:text-white mt-2">$99.99</p>
+        <div class="lg:col-span-7 mt-4 lg:mt-0 lg:flex lg:flex-col lg:items-center">
+            <h1 id="item-name" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl text-center">Item Name</h1>
+            <p id="item-price" class="text-3xl tracking-tight text-gray-900 dark:text-white mt-2 text-center">$99.99</p>
 
             <!-- Reviews -->
-            <div class="flex items-center mt-4">
+            <div class="flex items-center mt-4 justify-center">
                 <div class="flex items-center">
                     <i class="fas fa-star text-yellow-500"></i>
                     <i class="fas fa-star text-yellow-500"></i>
@@ -275,18 +275,18 @@
             </div>
 
             <!-- Add to Cart Form -->
-            <form id="add-to-cart-form" class="mt-8">
+            <form id="add-to-cart-form" class="mt-8 w-full flex justify-center">
               <button type="submit" class="flex items-center justify-center rounded-md bg-remarket-blue hover:bg-remarket-teal-700 px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-remarket-teal-500">Add to cart</button>
             </form>
 
             <!-- Description -->
-            <div class="mt-8">
+            <div class="mt-8 text-center">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Description</h3>
                 <p id="item-description" class="text-base text-gray-900 dark:text-gray-300 mt-4">This is a detailed description of the product...</p>
             </div>
 
             <!-- Seller Info -->
-            <div class="mt-8">
+            <div class="mt-8 text-center">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sold by:</h3>
                 <p class="mt-2 text-md text-gray-700 dark:text-gray-300">
                     <a href="account_page.html" class="text-remarket-blue hover:text-remarket-teal-700">John Doe</a>
@@ -295,6 +295,7 @@
         </div>
     </div>
 </div>
+
 
 
 

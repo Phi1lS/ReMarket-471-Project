@@ -2404,8 +2404,8 @@ select {
     flex-direction: column;
   }
 
-  .lg\:justify-center {
-    justify-content: center;
+  .lg\:items-center {
+    align-items: center;
   }
 
   .lg\:gap-8 {
