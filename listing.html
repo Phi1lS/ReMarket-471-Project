@@ -288,9 +288,14 @@
                 </p>
             </div>
 
-            <!-- Add to Cart Form -->
-            <form id="add-to-cart-form" class="mt-8 w-full flex justify-center">
-              <button type="submit" class="flex items-center justify-center rounded-md bg-remarket-blue hover:bg-remarket-teal-700 px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-remarket-teal-500">Add to cart</button>
+            <form id="add-to-cart-form" class="mt-10">
+              <input type="hidden" id="item-id-input" name="item_id" value="">
+              <!-- The item ID will be set dynamically -->
+              <input type="number" id="quantity-input" name="quantity" value="1" min="1" class="sr-only">
+              <!-- This input is hidden, as we default quantity to 1 -->
+              <button type="submit"
+                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-remarket-blue hover:bg-remarket-teal-700 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-remarket-teal-500 focus:ring-offset-2">Add
+                to cart</button>
             </form>
         </div>
     </div>
