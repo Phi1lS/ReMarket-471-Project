@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const userMenuButton = document.querySelector('#user-menu-button');
+  const userMenuButton = document.querySelector('#profile-picture1');
   const userMenu = document.querySelector('#user-menu');
   const mobileMenuButton = document.querySelector('#mobile-menu-button');
   const mobileMenu = document.querySelector('#mobile-menu');
