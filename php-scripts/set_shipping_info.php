@@ -9,7 +9,7 @@
         && isset($_POST['zip']) && isset($_POST['country'])) 
     {
         // Retrieving user ID
-        $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['id'];
     
         $sql = "INSERT INTO shipping_info (user_id, name, street, city, state, zip, country)
             VALUES (:user_id, :name, :street, :city, :state, :zip, :country)";

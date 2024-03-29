@@ -3,12 +3,12 @@ session_start();
 require 'pdo.php';
 
 // Check if the user is logged in and the file upload is set
-if (!isset($_SESSION['id'], $_FILES['file-upload']) || $_FILES['file-upload']['error'] != UPLOAD_ERR_OK) {
+if (!isset($_SESSION['user_id'], $_FILES['file-upload']) || $_FILES['file-upload']['error'] != UPLOAD_ERR_OK) {
     echo "Error: Missing user session or file upload issue.";
     exit();
 }
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // Fetch user details from the 'user' table
 $userQuery = $pdo->prepare("SELECT fname, lname, phone FROM user WHERE id = :user_id");
