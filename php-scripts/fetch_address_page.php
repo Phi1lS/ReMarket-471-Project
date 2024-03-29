@@ -6,7 +6,7 @@ session_start();
 require_once 'pdo.php';
 
 // Get user_id:
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 $stmt = $pdo->prepare("SELECT * FROM shipping_info WHERE user_id = :user_id");
 $stmt->execute(['user_id' => $user_id]);

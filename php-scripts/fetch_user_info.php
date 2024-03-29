@@ -2,12 +2,12 @@
     session_start();
     require_once 'pdo.php';
 
-    if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['user_id'])) {
         header('Location: login.html');
         exit();
     }
 
-    $user_id = $_SESSION['id'];
+    $user_id = $_SESSION['user_id'];
 
     // Fetch user details
     $userQuery = $pdo->prepare("SELECT * FROM user WHERE id = :user_id");

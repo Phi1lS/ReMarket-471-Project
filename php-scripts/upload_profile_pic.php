@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // Check if the file upload is set
 if (!isset($_FILES['profile_picture'])) {

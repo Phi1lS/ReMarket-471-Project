@@ -3,7 +3,7 @@ session_start();
 require 'pdo.php';  // Make sure this points to your actual PDO connection setup
 
 // Check if the user is logged in
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['user_id'])) {
     // Redirect to login page if the user is not logged in
     header('Location: ../login.html');
     exit();

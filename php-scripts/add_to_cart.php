@@ -4,7 +4,7 @@ session_start();
 
 require_once 'pdo.php'; 
 
-$user_id = $_SESSION['id']; // The user's ID
+$user_id = $_SESSION['user_id']; // The user's ID
 $item_id = $_POST['item_id']; // The ID of the item being added to the cart
 $quantity = $_POST['quantity']; // The quantity of the item being added to the cart
 

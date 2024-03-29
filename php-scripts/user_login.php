@@ -30,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         exit;
     } else {
         // Store the user ID in the session:
-        $_SESSION['id'] = $row['id'];
+        $_SESSION['user_id'] = $row['id'];
 
         // Insert the user into the active users table
         $sql = "INSERT INTO active_users (user_id) VALUES (:user_id)";

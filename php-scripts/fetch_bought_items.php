@@ -3,7 +3,7 @@
 session_start();
 require_once 'pdo.php'; 
 
-$user_id = $_SESSION['id']; 
+$user_id = $_SESSION['user_id']; 
 
 try {
     // Query to fetch bought items
