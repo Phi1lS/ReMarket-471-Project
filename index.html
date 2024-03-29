@@ -39,12 +39,14 @@
               <a href="create_post.html" class="text-white px-3 py-2 rounded hover:bg-remarket-dark dark:hover:bg-gray-800">Create New Post</a>
           </div>
 
-          <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
-              <input type="search" placeholder="Search for anything" class="dark:bg-gray-600 px-2 py-1 w-full rounded">
-              <button class="text-remarket-dark dark:text-gray-300">
-                  <i class="fas fa-search"></i>
-              </button>
-          </div>
+          <form action="./php-scripts/search_item.php" method="post">
+            <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
+                <input type="search" name="search_term" placeholder="Search for anything" class="dark:bg-gray-600 px-2 py-1 w-full rounded">
+                <button type="submit" class="text-remarket-dark dark:text-gray-300">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>        
 
           <div class="text-white hover:text-gray-300 text-xl">
               <i class="fas fa-shopping-cart"></i>
