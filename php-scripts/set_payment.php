@@ -16,7 +16,7 @@
             && isset($_POST['expiration_date']) && isset($_POST['CVV']) && isset($_POST['address'])) 
         {
             // Retrieving user ID
-            $user_id = $_SESSION['id'];
+            $user_id = $_SESSION['user_id'];
 
             // Retrieve the address ID from shipping_info table:
             $sql = "SELECT id FROM shipping_info WHERE user_id = :user_id";
