@@ -151,70 +151,8 @@
 
                                     <div class="mt-8">
                                         <div class="flow-root">
-                                            <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                                <li class="flex py-6">
-                                                    <div
-                                                        class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
-                                                            alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
-                                                            class="h-full w-full object-cover object-center">
-                                                    </div>
-                                                    <!-- TODO: PHP Script to dynamically fetch and generate cart items into the slideover cart -->
-                                                    <div class="ml-4 flex flex-1 flex-col">
-                                                        <div>
-                                                            <div
-                                                                class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
-                                                                <h3>
-                                                                    <a href="#">Throwback Hip Bag</a>
-                                                                </h3>
-                                                                <p class="ml-4">$90.00</p>
-                                                            </div>
-                                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                                                                Salmon</p>
-                                                        </div>
-                                                        <div class="flex flex-1 items-end justify-between text-sm">
-                                                            <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
-
-                                                            <div class="flex">
-                                                                <!-- TODO: PHP Script that makes remove item remove cart item from cart -->
-                                                                <button type="button"
-                                                                    class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="flex py-6">
-                                                    <div
-                                                        class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg"
-                                                            alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch."
-                                                            class="h-full w-full object-cover object-center">
-                                                    </div>
-
-                                                    <div class="ml-4 flex flex-1 flex-col">
-                                                        <div>
-                                                            <div
-                                                                class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
-                                                                <h3>
-                                                                    <a href="#">Medium Stuff Satchel</a>
-                                                                </h3>
-                                                                <p class="ml-4">$32.00</p>
-                                                            </div>
-                                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                                                                Blue</p>
-                                                        </div>
-                                                        <div class="flex flex-1 items-end justify-between text-sm">
-                                                            <p class="text-gray-500 dark:text-gray-300">Qty 1</p>
-
-                                                            <div class="flex">
-                                                                <button type="button"
-                                                                    class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <!-- More products... -->
+                                            <ul id="cartItemsContainer" role="list" class="-my-6 divide-y divide-gray-200">
+                                                <!-- items will be diplayed dynamically here-->
                                             </ul>
                                         </div>
                                     </div>
@@ -224,7 +162,7 @@
                                     <div
                                         class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
                                         <p>Subtotal</p>
-                                        <p>$112.00</p>
+                                        <p id="total">$112.00</p>
                                     </div>
                                     <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes
                                         calculated at checkout.</p>
@@ -730,6 +668,63 @@
             });
         });
     </script>
+    <!-- Script to display cart items -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Make AJAX request to fetch cart items
+            $.ajax({
+                url: './php-scripts/fetch_cart_items.php', // Replace with the path to your PHP script
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    
+                    // Clear previous cart items
+                    //$('#cartItemsContainer').empty();
+                    var total =  0;
+                    // Loop through each cart item and append HTML to the container
+                    data.forEach(function (item) {
+                        var cartItemHTML = generateCartItemHTML(item);
+                        total += parseFloat(item.total_price); 
+                        console.log(cartItemHTML);
+                        $('#cartItemsContainer').append(cartItemHTML);
+                    });
+                    
+                    $("#total").html("$" + total.toFixed(2));
+                }
+            });
+        });
+
+        // Function to generate HTML for a single cart item
+        function generateCartItemHTML(item) {
+            // Decode the Base64 image string
+            var imageData = item.item_picture ? `data:image/png;base64,${item.item_picture}` : './path/to/default-image.jpg';
+
+            return `
+            <li class="flex py-6">
+                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <img src="${imageData}" alt="${item.item_name}" class="h-full w-full object-cover object-center">
+                </div>
+                <div class="ml-4 flex flex-1 flex-col">
+                    <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                            <h3><a href="#">${item.item_name}</a></h3>
+                            <p class="ml-4">$${parseFloat(item.total_price).toFixed(2)}</p>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">${item.item_description}</p>
+                    </div>
+                    <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
+                        <div class="flex">
+                            <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            `;
+        }
+    </script>
+
 
 </body>
 <!-- Footer -->
