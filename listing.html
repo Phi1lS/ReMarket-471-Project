@@ -284,7 +284,7 @@
             <div class="mt-8 text-center">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sold by:</h3>
                 <p class="mt-2 text-md text-gray-700 dark:text-gray-300">
-                    <a href="account_page.html" class="text-remarket-blue hover:text-remarket-teal-700">John Doe</a>
+                    <a id="seller-name" href="account_page.html" class="text-remarket-blue hover:text-remarket-teal-700">John Doe</a>
                 </p>
             </div>
 
@@ -404,7 +404,7 @@
               $('#item-description').text(item.item_description);
 
               // Update seller info
-              $('#seller-link').text(item.seller_username); // Update this ID with the one used in your HTML for the seller's username
+              $('#seller-name').text(item.contact_name); // Update this ID with the one used in your HTML for the seller's username
 
               // If you have a reviews section or similar dynamic content, update them as needed
             } else {
