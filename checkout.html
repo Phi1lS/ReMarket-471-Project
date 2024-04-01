@@ -191,40 +191,8 @@
       <!-- Left side -->
       <div class="md:w-1/2 md:mx-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <!-- Payment Section -->
-        <div class="mb-6">
-          <label for="email" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email address</label>
-          <input type="email" id="email"
-            class=" dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="you@example.com">
-        </div>
-        <div class="mb-6">
-          <label for="card-name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Name on
-            card</label>
-          <input type="text" id="card-name"
-            class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Name on card">
-        </div>
         <div class="flex -mx-2">
-          <div class="mb-6 px-2 w-1/2">
-            <label for="card-number" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Card
-              number</label>
-            <input type="text" id="card-number"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="•••• •••• •••• ••••">
-          </div>
-          <div class="mb-6 px-2 w-1/4">
-            <label for="card-expiration"
-              class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Expiration (MM/YY)</label>
-            <input type="text" id="card-expiration"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="MM/YY">
-          </div>
-          <div class="mb-6 px-2 w-1/4">
-            <label for="card-cvc" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">CVC</label>
-            <input type="text" id="card-cvc"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="CVC">
-          </div>
+
         </div>
         <!-- Saved Cards Dropdown -->
         <div class="mb-4">
@@ -236,50 +204,28 @@
             <!-- Dynamically loaded saved cards -->
           </select>
         </div>
-        <div class="mb-6">
+        <!-- <div class="mb-6">
           <label for="address" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Address</label>
           <input type="text" id="address"
             class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="1234 Main St">
-        </div>
+        </div> -->
         <div class="flex -mx-2">
-          <div class="mb-6 px-2 w-1/2">
-            <label for="city" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">City</label>
-            <input type="text" id="city"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="City">
-          </div>
-          <div class="mb-6 px-2 w-1/4">
-            <label for="state" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">State /
-              Province</label>
-            <input type="text" id="state"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="State">
-          </div>
-          <div class="mb-6 px-2 w-1/4">
-            <label for="postal-code" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Postal
-              Code</label>
-            <input type="text" id="postal-code"
-              class="dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Postal Code">
-          </div>
+          
         </div>
         <!-- Saved Address Dropdown -->
         <div class="mb-6">
           <label for="saved-billing-addresses"
             class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Select a saved address:</label>
-          <select id="saved-billing-addresses"
-            class="bg-gray-100 dark:bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-400 leading-tight focus:outline-none focus:shadow-outline">
-            <option value="">Select an address</option>
-            <!-- Dynamically populated options -->
-            <option value="address1">1234 Main St, City, State, ZIP</option>
-            <option value="address2">5678 Another St, City, State, ZIP</option>
-            <!-- More addresses -->
+          <select id="add-billing-address" name="address"
+            class="dark:bg-gray-700 dark:text-white rounded-lg shadow-sm w-full p-2 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue">
+            <option>Select an address</option>
+            <!-- Options will hopefully be populated by jQuery-->
           </select>
         </div>
         <div class="flex items-center mb-6">
           <input id="billing-address" type="checkbox"
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" checked>
+            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" checked="true" disabled>
           <label for="billing-address" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
             Billing address is the same as shipping address
           </label>
@@ -318,11 +264,13 @@
         </div>
         <div class="flex justify-between items-center">
           <p class="text-gray-600 dark:text-gray-500 text-xs">Payment details stored in plain text</p>
-          <button
+          <form action="./php-scripts/set_buyer_id_checkout.php">
+            <button id="total2"
             class="bg-remarket-blue hover:bg-remarket-teal-800 dark:bg-remarket-teal-800 dark:hover:bg-remarket-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit">
             Pay $341.68
           </button>
+          </form>
         </div>
       </div>
       <!-- Right side -->
@@ -330,44 +278,25 @@
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <h3 class="text-xl font-bold dark:text-white mb-4">Your Cart</h3>
           <!-- Cart items here -->
-          <div class="flex justify-between items-center mb-4">
-            <div class="flex">
-              <img class="h-20 w-20 object-cover rounded-md" src="path_to_micro_backpack_image" alt="Micro Backpack">
-              <div class="ml-4">
-                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-300">Micro Backpack</h4>
-                <p class="text-sm text-gray-500">Moss</p>
-                <p class="text-sm text-gray-500">5L</p>
-              </div>
+          <div class="mt-8">
+            <div class="flow-root">
+              <ul id="cartItemsContainer2" role="list" class="-my-6 divide-y divide-gray-200">
+                <!-- items will be diplayed dynamically here-->
+              </ul>
             </div>
-            <p class="text-gray-900 dark:text-gray-300">$70.00</p>
           </div>
-          <!-- Repeat for other cart items -->
-          <!-- Subtotal section -->
-          <div class="border-t-2 border-gray-200 pt-4 mt-4">
-            <div class="flex justify-between mb-3">
-              <h3 class="text-gray-800 dark:text-gray-300">Subtotal</h3>
-              <p class="text-gray-800">$210.00</p>
-            </div>
-            <div class="flex justify-between mb-3">
-              <h3 class="text-gray-800 dark:text-gray-300">Discount</h3>
-              <p class="text-gray-800 dark:text-gray-300">-$24.00</p>
-            </div>
-            <div class="flex justify-between mb-3">
-              <h3 class="text-gray-800 dark:text-gray-300">Taxes</h3>
-              <p class="text-gray-800 dark:text-gray-300">$23.68</p>
-            </div>
-            <div class="flex justify-between mb-3">
-              <h3 class="text-gray-800 dark:text-gray-300">Shipping</h3>
-              <p class="text-gray-800 dark:text-gray-300">$22.00</p>
-            </div>
-            <div class="flex justify-between mb-3">
-              <h3 class="text-xl font-bold dark:text-white">Total</h3>
-              <p class="text-xl font-bold dark:text-white">$341.68</p>
-            </div>
+        </div>
+        <!-- Repeat for other cart items -->
+        <!-- Subtotal section -->
+        <div class="border-t-2 border-gray-200 pt-4 mt-4">
+          <div class="flex justify-between mb-3">
+            <h3 class="text-xl font-bold dark:text-white">Total</h3>
+            <p id="total3" class="text-xl font-bold dark:text-white">$341.68</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <script src="js-scripts/checkout.js" type="text/JavaScript"></script>
@@ -492,6 +421,153 @@
     });
   </script>
   <!--end of search script-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Make AJAX request to fetch cart items
+      $.ajax({
+        url: './php-scripts/fetch_cart_items.php', // Replace with the path to your PHP script
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+          // Clear previous cart items
+          //$('#cartItemsContainer').empty();
+          var total = 0;
+          // Loop through each cart item and append HTML to the container
+          data.forEach(function (item) {
+            var cartItemHTML = generateCartItemHTML(item);
+            total += parseFloat(item.total_price);
+            console.log(cartItemHTML);
+            $('#cartItemsContainer2').append(cartItemHTML);
+          });
+
+          $("#total2").html("Checkout & Pay: $" + total.toFixed(2));
+        }
+      });
+    });
+
+    // Function to generate HTML for a single cart item
+    function generateCartItemHTML(item) {
+      // Decode the Base64 image string
+      var imageData = item.item_picture ? `data:image/png;base64,${item.item_picture}` : './path/to/default-image.jpg';
+
+      return `
+          <li class="flex py-6">
+              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                  <img src="${imageData}" alt="${item.item_name}" class="h-full w-full object-cover object-center">
+              </div>
+              <div class="ml-4 flex flex-1 flex-col">
+                  <div>
+                      <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                          <h3><a href="#">${item.item_name}</a></h3>
+                          <p class="ml-4">$${parseFloat(item.total_price).toFixed(2)}</p>
+                      </div>
+                      <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">${item.item_description}</p>
+                  </div>
+                  <div class="flex flex-1 items-end justify-between text-sm">
+                      <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
+                      <div class="flex">
+                          <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                      </div>
+                  </div>
+              </div>
+          </li>
+          `;
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Make AJAX request to fetch cart items
+      $.ajax({
+        url: './php-scripts/fetch_cart_items.php', // Replace with the path to your PHP script
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+          // Clear previous cart items
+          //$('#cartItemsContainer').empty();
+          var total = 0;
+          // Loop through each cart item and append HTML to the container
+          data.forEach(function (item) {
+            var cartItemHTML = generateCartItemHTML(item);
+            total += parseFloat(item.total_price);
+            console.log(cartItemHTML);
+            $('#cartItemsContainer3').append(cartItemHTML);
+          });
+
+          $("#total3").html("$" + total.toFixed(2));
+        }
+      });
+    });
+
+    // Function to generate HTML for a single cart item
+    function generateCartItemHTML(item) {
+      // Decode the Base64 image string
+      var imageData = item.item_picture ? `data:image/png;base64,${item.item_picture}` : './path/to/default-image.jpg';
+
+      return `
+        <li class="flex py-6">
+            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                <img src="${imageData}" alt="${item.item_name}" class="h-full w-full object-cover object-center">
+            </div>
+            <div class="ml-4 flex flex-1 flex-col">
+                <div>
+                    <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
+                        <h3><a href="#">${item.item_name}</a></h3>
+                        <p class="ml-4">$${parseFloat(item.total_price).toFixed(2)}</p>
+                    </div>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">${item.item_description}</p>
+                </div>
+                <div class="flex flex-1 items-end justify-between text-sm">
+                    <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
+                    <div class="flex">
+                        <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+        `;
+    }
+  </script>
+
+  <!-- jQuery script to fetch addresses and populate the select box -->
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: './php-scripts/fetch_address.php', // Replace with the path to your PHP script
+        type: 'post',
+        success: function (response) {
+          var addresses = JSON.parse(response);
+          var selectBox = $('#add-billing-address');
+          for (var i = 0; i < addresses.length; i++) {
+            var option = new Option(addresses[i].street + ', ' + addresses[i].city + ', ' + addresses[i].state + ', ' + addresses[i].zip + ', ' + addresses[i].country, addresses[i].id);
+            $(selectBox).append($(option));
+          }
+        }
+      });
+    });
+  </script>
+
+  <!-- jQuery script to fetch billing info and populate the select box -->
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: './php-scripts/fetch_payment.php', // Replace with the path to your PHP script
+        type: 'post',
+        success: function (response) {
+          var paymentInfo = JSON.parse(response);
+          var selectBox = $('#saved-cards');
+          for (var i = 0; i < paymentInfo.length; i++) {
+            var option = new Option('Name on card: ' + paymentInfo[i].cardholder_name + ', Card #: ' + paymentInfo[i].card_number + ', CVV: ' + paymentInfo[i].CVV);
+            $(selectBox).append($(option));
+          }
+        }
+      });
+    });
+  </script>
 </body>
 <!-- Footer -->
 <footer class="bg-gray-200 dark:bg-gray-800 mt-12">
