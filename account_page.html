@@ -158,7 +158,7 @@
                 <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
                     <p>Subtotal</p>
-                    <p id="total">$112.00</p>
+                    <p id="total">$0.00</p>
                   </div>
                   <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes calculated at checkout.
                   </p>
@@ -196,7 +196,8 @@
         <img id="profile-picture" src="other-images/default_profile_pic.jpg" alt="Profile Picture"
           class="h-20 w-20 rounded-full mx-auto">
         <h2 id="user-name" class="text-center text-2xl font-bold dark:text-white">User's Name</h2>
-        <p id="user-location" class="text-center text-sm text-gray-600 dark:text-gray-400">City, Country</p>
+        <p id="user-city" class="text-center text-sm text-gray-600 dark:text-gray-400">City</p>
+        <p id="user-country" class="text-center text-sm text-gray-600 dark:text-gray-400">Country</p>
       </div>
 
       <!-- Right Column: User Description, Review Form, and User Listings -->
@@ -208,7 +209,7 @@
         </section>
 
         <!-- Leave a Review Form -->
-        <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+        <!-- <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h3 class="text-xl font-bold dark:text-white">Leave a Review</h3>
           <form id="submit-review-form" class="space-y-4">
             <div class="star-rating flex justify-end">
@@ -232,62 +233,17 @@
             <button type="submit"
               class="w-full bg-remarket-blue hover:bg-remarket-teal-700 text-white p-2 rounded">Submit Review</button>
           </form>
-        </section>
+        </section> -->
 
 
         <!-- User Reviews -->
-        <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-          <div class="flex justify-between items-center">
-            <h3 class="text-xl font-bold dark:text-white">User Reviews</h3>
-            <!-- User's average rating -->
-            <span class="text-normal text-gray-600 dark:text-gray-400">Average Rating: 4.3/5</span>
-          </div>
-          <div class="space-y-4">
-            <!-- Review 1 -->
-            <div class="border-b dark:border-gray-700 pb-4">
-              <a href="account_page.html" class="text-sm font-bold text-remarket-blue hover:text-remarket-teal-700">Jane
-                Doe</a>
-              <div class="flex items-center">
-                <!-- Star Ratings for Jane Doe -->
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-              </div>
-              <p class="text-sm dark:text-gray-400">This user is amazing! Highly recommend.</p>
-            </div>
 
-            <!-- Review 2 -->
-            <div class="border-b dark:border-gray-700 pb-4">
-              <a href="account_page.html" class="text-sm font-bold text-remarket-blue hover:text-remarket-teal-700">John
-                Smith</a>
-              <div class="flex items-center">
-                <!-- Star Ratings for John Smith -->
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-yellow-500"></i>
-                <i class="fas fa-star text-gray-300"></i>
-                <i class="fas fa-star text-gray-300"></i>
-              </div>
-              <p class="text-sm dark:text-gray-400">Unwashed item. It's nice, but I would have liked it to be clean.</p>
-            </div>
-            <!-- More reviews button is here. Displays after two reviews ALWAYS and when clicked takes user to reviews.html -->
-          </div>
-          <div class="text-center mt-4">
-            <a href="reviews.html"
-              class="bg-remarket-blue hover:bg-remarket-teal-700 text-white font-semibold py-2 px-4 rounded inline-block">
-              More Reviews
-            </a>
-          </div>
-        </section>
 
 
         <!-- User Listings -->
-        <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+        <!-- <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h2 class="text-xl font-bold dark:text-white">User Listings</h2>
-          <!-- Listings will go here -->
-        </section>
+        </section> -->
       </div>
     </div>
   </main>
@@ -412,6 +368,27 @@
           </li>
           `;
     }
+  </script>
+  <!-- Script for displaying user city and country-->
+  <script>
+    $(document).ready(function () {
+      // Make AJAX request to fetch user info
+      $.ajax({
+        url: './php-scripts/fetch_city_country.php', // Path to your PHP script
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+          if (!data.error) {
+            // Assuming 'city' and 'country' are returned by your PHP script
+            $('#user-city').text(data.city);
+            $('#user-country').text(data.country);
+          } else {
+            console.error(data.error);
+            // Handle error
+          }
+        }
+      });
+    });
   </script>
 </body>
 

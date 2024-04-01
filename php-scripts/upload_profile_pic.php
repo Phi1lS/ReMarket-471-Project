@@ -47,10 +47,10 @@ $stmt = $pdo->prepare($query);
 // Execute the query with the binary content of the image
 if ($stmt->execute([$imageContent, $user_id])) {
     echo "Profile picture updated successfully.";
-    header('Location: ../settings.html?success=true');
+    header('Location: ../account_page.html?success=true');
 } else {
     echo "Error updating profile picture in the database.";
     //redirect back to the profile page or another appropriate page with an error message
-    header('Location: ../settings.html');
+    header('Location: ../account_page.html');
 }
 ?>
