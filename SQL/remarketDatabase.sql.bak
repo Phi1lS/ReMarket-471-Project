@@ -46,7 +46,7 @@ CREATE TABLE `payment_info` (
   `user_id` int NOT NULL,
   `cardholder_name` varchar(100) NOT NULL,
   `card_number` int NOT NULL,
-  `expiration_date` DATE,
+  `expiration_date` varchar(10),
   `CVV` int NOT NULL,
   `address` int NOT NULL,  -- New field
   PRIMARY KEY (`id`),

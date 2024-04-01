@@ -163,7 +163,7 @@
                 <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
                     <p>Subtotal</p>
-                    <p id="total">$112.00</p>
+                    <p id="total">$0.00</p>
                   </div>
                   <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes calculated at checkout.
                   </p>
@@ -304,7 +304,10 @@
                   <div class="flex flex-1 items-end justify-between text-sm">
                       <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
                       <div class="flex">
-                          <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                          <form id="item_id" name="item_id" action="./php-scripts/remove_from_cart.php" method="post">
+                              <input type="hidden" name="item_id" id="item_id" value="${item.item_id}">
+                              <button type="submit" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                          </form>
                       </div>
                   </div>
               </div>

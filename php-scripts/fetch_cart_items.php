@@ -6,7 +6,7 @@ $user_id = $_SESSION['user_id'];
 
 // Fetch cart items
 $stmt = $pdo->prepare("
-    SELECT ci.quantity, ci.total_price, i.item_name, i.item_picture 
+    SELECT ci.item_id, ci.quantity, ci.total_price, i.item_name, i.item_picture 
     FROM cart_item ci 
     JOIN item i ON ci.item_id = i.id 
     WHERE ci.user_id = ?");

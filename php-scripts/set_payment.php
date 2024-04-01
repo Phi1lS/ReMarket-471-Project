@@ -43,7 +43,7 @@
             ':address' => $address));
         
             echo "Payment information added successfully.";
-            header('Location: ../index.html');
+            header('Location: ../settings.html');
         }
         else 
         {

@@ -36,13 +36,13 @@
 
             <form action="./php-scripts/search_item.php" id="search-form" method="post">
                 <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
-                  <input type="search" name="search_term" placeholder="Search for anything"
-                    class="dark:bg-gray-600 px-2 py-1 w-full rounded">
-                  <button type="submit" class="text-remarket-dark dark:text-gray-300">
-                    <i class="fas fa-search"></i>
-                  </button>
+                    <input type="search" name="search_term" placeholder="Search for anything"
+                        class="dark:bg-gray-600 px-2 py-1 w-full rounded">
+                    <button type="submit" class="text-remarket-dark dark:text-gray-300">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-              </form>
+            </form>
 
             <div class="text-white hover:text-gray-300 text-xl">
                 <i class="fas fa-shopping-cart"></i>
@@ -165,7 +165,7 @@
                                     <div
                                         class="flex justify-between text-base font-medium text-gray-900 dark:text-gray-100">
                                         <p>Subtotal</p>
-                                        <p id="total">$112.00</p>
+                                        <p id="total">$0.00</p>
                                     </div>
                                     <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-300">Shipping and taxes
                                         calculated at checkout.</p>
@@ -359,25 +359,14 @@
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
                         <h3 class="text-lg text-black dark:text-white mb-3">Payment Method</h3>
                         <!-- Clickable payment method -->
-                        <div class="mb-3">
-                            <div class="flex justify-between items-center">
-                                <div class="flex-grow">
-                                    <p class="mb-1">•••• •••• •••• 1234 - John Doe - 12/23</p>
-                                    <p class="text-sm text-gray-500 dark:text-gray-300">Billing Address: 123 Main St,
-                                        City, State, ZIP</p>
-                                </div>
-                                <div class="flex">
-                                    <button onclick="toggleEditPaymentMethodForm(1)"
-                                        class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded mr-1">Edit</button>
-                                    <button onclick="deletePaymentMethod(1)"
-                                        class="text-sm bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Add Payment Method Button -->
-                        <button onclick="toggleAddPaymentMethodForm()"
+                        <div class="mb-4" id="paymentContainer">
+                            <!-- payment info will be loaded here -->
+                        </div>
+                        <button id="addPayment" onclick="toggleAddPaymentMethodForm()"
                             class="text-sm bg-remarket-blue hover:bg-remarket-dark text-white py-1 px-2 rounded">Add
-                            Payment Method</button>
+                            Payment Method
+                        </button>
                     </div>
 
 
@@ -719,7 +708,10 @@
                     <div class="flex flex-1 items-end justify-between text-sm">
                         <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
                         <div class="flex">
-                            <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                            <form id="item_id" name="item_id" action="./php-scripts/remove_from_cart.php" method="post">
+                                <input type="hidden" name="item_id" id="item_id" value="${item.item_id}">
+                                <button type="submit" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -764,6 +756,37 @@
         });
     </script>
     <!--end of search script-->
+
+    <!-- script to dynamically display billing info-->
+    <!-- jQuery script to fetch and display addresses -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: './php-scripts/fetch_billing_page.php',
+                type: 'GET',
+                success: function (data) {
+                    var billingInfo = JSON.parse(data);
+                    if (billingInfo.length > 0) {
+                        document.getElementById('addPayment').disabled = true;
+                    }
+                    var formattedBilling = '';
+                    for (var i = 0; i < billingInfo.length; i++) {
+                        formattedBilling += '<p><strong>Cardholder Name:</strong> ' + billingInfo[i].cardholder_name + '</p>';
+                        formattedBilling += '<p><strong>Card Number:</strong> ' + billingInfo[i].card_number + '</p>';
+                        formattedBilling += '<p><strong>Expiration Date:</strong> ' + billingInfo[i].expiration_date + '</p>';
+                        formattedBilling += '<p><strong>CVV:</strong> ' + billingInfo[i].CVV + '</p>';
+                        formattedBilling += '<p><strong>Address is same as address added in addresses section</strong> ';
+                        formattedBilling += '<hr>';
+                    }
+                    $('#paymentContainer').html(formattedBilling);
+                },
+                error: function () {
+                    console.log('Error fetching data');
+                }
+            });
+        });
+
+    </script>
 
 
 </body>
