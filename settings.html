@@ -34,13 +34,15 @@
                     Post</a>
             </div>
 
-            <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
-                <input type="search" placeholder="Search for anything"
+            <form action="./php-scripts/search_item.php" id="search-form" method="post">
+                <div class="flex bg-white dark:bg-gray-600 p-2 rounded">
+                  <input type="search" name="search_term" placeholder="Search for anything"
                     class="dark:bg-gray-600 px-2 py-1 w-full rounded">
-                <button class="text-remarket-dark dark:text-gray-300">
+                  <button type="submit" class="text-remarket-dark dark:text-gray-300">
                     <i class="fas fa-search"></i>
-                </button>
-            </div>
+                  </button>
+                </div>
+              </form>
 
             <div class="text-white hover:text-gray-300 text-xl">
                 <i class="fas fa-shopping-cart"></i>
@@ -151,7 +153,8 @@
 
                                     <div class="mt-8">
                                         <div class="flow-root">
-                                            <ul id="cartItemsContainer" role="list" class="-my-6 divide-y divide-gray-200">
+                                            <ul id="cartItemsContainer" role="list"
+                                                class="-my-6 divide-y divide-gray-200">
                                                 <!-- items will be diplayed dynamically here-->
                                             </ul>
                                         </div>
@@ -678,18 +681,18 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    
+
                     // Clear previous cart items
                     //$('#cartItemsContainer').empty();
-                    var total =  0;
+                    var total = 0;
                     // Loop through each cart item and append HTML to the container
                     data.forEach(function (item) {
                         var cartItemHTML = generateCartItemHTML(item);
-                        total += parseFloat(item.total_price); 
+                        total += parseFloat(item.total_price);
                         console.log(cartItemHTML);
                         $('#cartItemsContainer').append(cartItemHTML);
                     });
-                    
+
                     $("#total").html("$" + total.toFixed(2));
                 }
             });
@@ -724,6 +727,43 @@
             `;
         }
     </script>
+
+    <!--search bar script-->
+    <script>
+        $(document).ready(function () {
+            // Handle the form submission
+            $('#search-form').on('submit', function (e) {
+                e.preventDefault();
+
+                var searchTerm = $(this).find('input[name="search_term"]').val();
+
+                $.ajax({
+                    url: './php-scripts/search_item.php',
+                    type: 'POST',
+                    data: { search_term: searchTerm },
+                    dataType: 'json',
+                    success: function (item) {
+                        if (item.error) {
+                            // Handle error
+                            console.log('Error:', item.error);
+                        } else if (item.id) {
+                            // Redirect to the listing page of the item
+                            window.location.href = 'listing.html?itemId=' + item.id;
+                        } else {
+                            // Display pop-up if no item found
+                            alert('No item found!');
+                        }
+                    },
+                    error: function () {
+                        // Handle the case where there was an error with the request
+                        alert('No item found!');
+                        console.log('Error searching for items');
+                    }
+                });
+            });
+        });
+    </script>
+    <!--end of search script-->
 
 
 </body>
