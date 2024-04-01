@@ -28,9 +28,6 @@ $pdo->prepare("DELETE FROM shipping_info WHERE user_id = ?")
 $pdo->prepare("DELETE FROM active_users WHERE user_id = ?")
     ->execute([$user_id]);
 
-// 5. Finally, delete the user
-$pdo->prepare("DELETE FROM user WHERE id = ?")
-    ->execute([$user_id]);
 
 // Commit the transaction
 $pdo->commit();
