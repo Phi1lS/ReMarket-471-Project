@@ -350,36 +350,36 @@
   <!-- Script to display cart items -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function () {
-      // Make AJAX request to fetch cart items
-      $.ajax({
-        url: './php-scripts/fetch_cart_items.php', // Replace with the path to your PHP script
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
+      $(document).ready(function () {
+          // Make AJAX request to fetch cart items
+          $.ajax({
+              url: './php-scripts/fetch_cart_items.php', // Replace with the path to your PHP script
+              type: 'GET',
+              dataType: 'json',
+              success: function (data) {
 
-          // Clear previous cart items
-          //$('#cartItemsContainer').empty();
-          var total = 0;
-          // Loop through each cart item and append HTML to the container
-          data.forEach(function (item) {
-            var cartItemHTML = generateCartItemHTML(item);
-            total += parseFloat(item.total_price);
-            console.log(cartItemHTML);
-            $('#cartItemsContainer').append(cartItemHTML);
+                  // Clear previous cart items
+                  //$('#cartItemsContainer').empty();
+                  var total = 0;
+                  // Loop through each cart item and append HTML to the container
+                  data.forEach(function (item) {
+                      var cartItemHTML = generateCartItemHTML(item);
+                      total += parseFloat(item.total_price);
+                      console.log(cartItemHTML);
+                      $('#cartItemsContainer').append(cartItemHTML);
+                  });
+
+                  $("#total").html("$" + total.toFixed(2));
+              }
           });
-
-          $("#total").html("$" + total.toFixed(2));
-        }
       });
-    });
 
-    // Function to generate HTML for a single cart item
-    function generateCartItemHTML(item) {
-      // Decode the Base64 image string
-      var imageData = item.item_picture ? `data:image/png;base64,${item.item_picture}` : './path/to/default-image.jpg';
+      // Function to generate HTML for a single cart item
+      function generateCartItemHTML(item) {
+          // Decode the Base64 image string
+          var imageData = item.item_picture ? `data:image/png;base64,${item.item_picture}` : './path/to/default-image.jpg';
 
-      return `
+          return `
           <li class="flex py-6">
               <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img src="${imageData}" alt="${item.item_name}" class="h-full w-full object-cover object-center">
@@ -395,13 +395,16 @@
                   <div class="flex flex-1 items-end justify-between text-sm">
                       <p class="text-gray-500 dark:text-gray-300">Qty ${item.quantity}</p>
                       <div class="flex">
-                          <button type="button" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                          <form id="item_id" name="item_id" action="./php-scripts/remove_from_cart.php" method="post">
+                              <input type="hidden" name="item_id" id="item_id" value="${item.item_id}">
+                              <button type="submit" class="font-medium text-remarket-blue dark:text-remarket-teal-800 hover:text-remarket-teal-700 dark:hover:text-remarket-blue">Remove</button>
+                          </form>
                       </div>
                   </div>
               </div>
           </li>
           `;
-    }
+      }
   </script>
 
 
