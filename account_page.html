@@ -13,7 +13,7 @@
 
     <link rel="manifest" href="site.webmanifest">
 </head>
-<body class="h-full dark:caret-white">
+<body class="h-full dark:caret-white flex flex-col">
     <!-- Header -->
     <nav class="fixed top-0 z-50 w-full bg-remarket-blue p-4 dark:bg-remarket-dark flex items-center justify-between">
       <a href="index.html" class="flex items-center mr-4 md:mr-6">
@@ -207,7 +207,7 @@
 
   <!-- END HEADER -->
 
-    <main class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <main class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 flex-grow">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Left Column: Profile Picture, Name, and City -->
             <div id="profile-info" class="md:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow space-y-4">
@@ -222,83 +222,6 @@
                 <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
                     <h3 class="text-xl font-bold dark:text-white">User Description</h3>
                     <p id="user-description" class="text-gray-600 dark:text-gray-400">User's description...</p>
-                </section>
-
-                <!-- Leave a Review Form -->
-                <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold dark:text-white">Leave a Review</h3>
-                    <form id="submit-review-form" class="space-y-4">
-                        <div class="star-rating flex justify-end">
-                            <input type="radio" name="rating" id="star5" value="5" class="hidden" />
-                            <label for="star5" class="star"><i class="fas fa-star cursor-pointer"></i></label>
-                
-                            <input type="radio" name="rating" id="star4" value="4" class="hidden" />
-                            <label for="star4" class="star"><i class="fas fa-star cursor-pointer"></i></label>
-                
-                            <input type="radio" name="rating" id="star3" value="3" class="hidden" />
-                            <label for="star3" class="star"><i class="fas fa-star cursor-pointer"></i></label>
-                
-                            <input type="radio" name="rating" id="star2" value="2" class="hidden" />
-                            <label for="star2" class="star"><i class="fas fa-star cursor-pointer"></i></label>
-                
-                            <input type="radio" name="rating" id="star1" value="1" class="hidden" />
-                            <label for="star1" class="star"><i class="fas fa-star cursor-pointer"></i></label>
-                        </div>
-                        <textarea id="review-text" name="review_text" required class="p-2 border border-gray-300 dark:border-gray-700 rounded w-full dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-remarket-blue focus:border-remarket-blue"></textarea>
-                        <button type="submit" class="w-full bg-remarket-blue hover:bg-remarket-teal-700 text-white p-2 rounded">Submit Review</button>
-                    </form>
-                </section>
-                
-                
-            <!-- User Reviews -->
-            <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-              <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold dark:text-white">User Reviews</h3>
-                <!-- User's average rating -->
-                <span class="text-normal text-gray-600 dark:text-gray-400">Average Rating: 4.3/5</span>
-            </div>
-              <div class="space-y-4">
-                  <!-- Review 1 -->
-                  <div class="border-b dark:border-gray-700 pb-4">
-                    <a href="account_page.html" class="text-sm font-bold text-remarket-blue hover:text-remarket-teal-700">Jane Doe</a>
-                    <div class="flex items-center">
-                        <!-- Star Ratings for Jane Doe -->
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                    </div>
-                    <p class="text-sm dark:text-gray-400">This user is amazing! Highly recommend.</p>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="border-b dark:border-gray-700 pb-4">
-                    <a href="account_page.html" class="text-sm font-bold text-remarket-blue hover:text-remarket-teal-700">John Smith</a>
-                    <div class="flex items-center">
-                        <!-- Star Ratings for John Smith -->
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-gray-300"></i>
-                        <i class="fas fa-star text-gray-300"></i>
-                    </div>
-                    <p class="text-sm dark:text-gray-400">Very helpful and the item was as described.</p>
-                </div>
-                  <!-- More reviews button is here. Displays after two reviews ALWAYS and when clicked takes user to reviews.html -->
-              </div>
-              <div class="text-center mt-4">
-                <a href="reviews.html" class="bg-remarket-blue hover:bg-remarket-teal-700 text-white font-semibold py-2 px-4 rounded inline-block">
-                  More Reviews
-                </a>
-              </div>
-            </section>
-
-
-                <!-- User Listings -->
-                <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h2 class="text-xl font-bold dark:text-white">User Listings</h2>
-                    <!-- Listings will go here -->
                 </section>
             </div>
         </div>
