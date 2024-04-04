@@ -210,64 +210,36 @@
         <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Order history</h1>
         <p class="mb-4 text-gray-500 dark:text-gray-400">Check the status of recent orders, manage returns, and discover similar products.</p>
 
-        <!-- First order -->
+        <!--First item-->
         <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6">
-            <div class="px-4 py-8 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number WU88191111</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Jul 6, 2021</p>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $230.00</p>
-                
-                <!-- First item -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_micro_backpack_image" alt="Micro Backpack">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Micro Backpack</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @username</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (123) 456-7890</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Jul 12, 2021</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-900 dark:text-white">$70.00</p>
-                </div>
-
-                <!-- Second item -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_additional_item_image" alt="Additional Item">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Additional Item Name</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @secondusername</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on [Delivery Date]</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-900 dark:text-white">[Item Price]</p>
-                </div>
-            </div>
+          <div class="px-4 py-5 sm:p-6">
+              <div class="flex items-center space-x-6">
+                  <img src="item-pictures/backpack-teal.jpg" alt="${item.item_name}" class="h-12 w-12 object-cover rounded-full">
+                  <div class="flex-grow">
+                      <h3 class="text-sm font-medium text-gray-900 dark:text-white">Micro Backpack</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @username</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Phone: 123-456-7890</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on 04/04/2024</p>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">$70.00</p>
+              </div>
+          </div>
         </div>
 
-        <!-- Second Order Block -->
-        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
-            <div class="px-4 py-8 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Order number AT4841546</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Date placed Dec 22, 2020</p>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Total amount $80.00</p>
-                
-                <!-- Item in the second order -->
-                <div class="mt-6 sm:mt-8 flex justify-between items-center">
-                    <div class="flex">
-                        <img class="h-20 w-20 object-cover rounded-md" src="path_to_nomad_shopping_tote_image" alt="Nomad Shopping Tote">
-                        <div class="ml-4">
-                            <h4 class="text-sm font-medium text-gray-900 dark:text-white">Nomad Shopping Tote</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @anotherusername</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Phone: (987) 654-3210</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on Dec 30, 2020</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-900 dark:text-white">$40.00</p>
-                </div>
-            </div>
+        <!--Second item-->
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6">
+          <div class="px-4 py-5 sm:p-6">
+              <div class="flex items-center space-x-6">
+                  <img src="item-pictures/used-console.jpg" alt="${item.item_name}" class="h-12 w-12 object-cover rounded-full">
+                  <div class="flex-grow">
+                      <h3 class="text-sm font-medium text-gray-900 dark:text-white">Used Anbernic RG35XX</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Seller: @username2</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Phone: 314-159-2653</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Delivered on 01/22/2024</p>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">$35.99</p>
+              </div>
+          </div>
         </div>
     </div>
     <script src="js-scripts/UI.js" type="text/JavaScript"></script>
