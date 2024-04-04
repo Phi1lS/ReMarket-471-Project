@@ -6,7 +6,8 @@ The project is a marketplace similar to Ebay or Craigslist.
 Github Pages link:
 https://phi1ls.github.io/ReMarket-471-Project/
 
-The Team:
+###The Team:
+
 Phillip Solis: Lead Front-end Developer
 
 Nathan Halash: Lead Back-end Developer
