@@ -2372,6 +2372,11 @@ select {
     background-color: rgb(49 151 149 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-blue-950 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(23 37 84 / var(--tw-bg-opacity));
+  }
+
   .dark\:text-gray-100 {
     --tw-text-opacity: 1;
     color: rgb(243 244 246 / var(--tw-text-opacity));
